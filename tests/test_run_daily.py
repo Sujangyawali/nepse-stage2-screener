@@ -27,8 +27,10 @@ def test_runs_pipeline_when_new_trading_session(tmp_path, monkeypatch):
     monkeypatch.setattr(run_daily, "parse_as_of_date", lambda html: "2026-07-23")
     monkeypatch.setattr(run_daily, "parse_today_rows", lambda html: [{"symbol": "TEST", "name": "Test"}])
     monkeypatch.setattr(run_daily, "normalize_rows", lambda rows: [
-        {"symbol": "TEST", "open": 1, "high": 2, "low": 1, "close": 1.5, "volume": 100}
+        {"symbol": "TEST", "open": 1, "high": 2, "low": 1, "close": 1.5, "volume": 100},
+        {"symbol": "DEBENTURE83/84", "open": 1, "high": 1, "low": 1, "close": 1, "volume": 1},
     ])
+    monkeypatch.setattr(run_daily, "load_symbols_meta", lambda: {"TEST": {"is_equity": True}})
 
     upserted = []
     monkeypatch.setattr(run_daily, "upsert_rows", lambda symbol, rows: upserted.append((symbol, rows)))

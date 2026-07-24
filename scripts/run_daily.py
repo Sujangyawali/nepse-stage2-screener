@@ -19,6 +19,7 @@ from scraper.config import LAST_RUN_PATH, TIMEZONE
 from scraper.fetch_today import fetch_today_html
 from scraper.normalize import normalize_rows
 from scraper.parse import parse_as_of_date, parse_today_rows
+from scraper.sector_filter import load_symbols_meta
 from scraper.storage import upsert_rows
 from screener.build_output import run as run_screener
 
@@ -49,7 +50,16 @@ def main(write_history_for_all: bool = False) -> int:
     raw_rows = parse_today_rows(html)
     rows = normalize_rows(raw_rows)
 
-    for row in rows:
+    # Only store history for symbols already classified as equity (see scraper/sector_filter.py).
+    # This also sidesteps a real NEPSE data quirk: debenture/bond symbols encode a Nepali
+    # fiscal-year range directly in the ticker (e.g. "NICD83/84"), which isn't safe to use
+    # as a filename — and we'd never screen those instruments anyway. A newly listed equity
+    # not yet classified is skipped here too, until scraper/sector_filter.py is next run.
+    meta = load_symbols_meta()
+    equity_rows = [row for row in rows if meta.get(row["symbol"], {}).get("is_equity", False)]
+    skipped = len(rows) - len(equity_rows)
+
+    for row in equity_rows:
         upsert_rows(row["symbol"], [{
             "date": as_of_date,
             "open": row["open"],
@@ -60,7 +70,7 @@ def main(write_history_for_all: bool = False) -> int:
             "source": "daily_scrape",
         }])
 
-    print(f"appended {len(rows)} symbol rows for {as_of_date}")
+    print(f"appended {len(equity_rows)} symbol rows for {as_of_date} ({skipped} non-equity/unclassified skipped)")
 
     result = run_screener(write_history_for_all=write_history_for_all)
     print(

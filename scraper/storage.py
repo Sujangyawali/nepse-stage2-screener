@@ -3,7 +3,20 @@ import pandas as pd
 from scraper.config import HISTORY_CSV_COLUMNS, HISTORY_DIR
 
 
+class InvalidSymbolError(Exception):
+    """Raised for a symbol that isn't safe to use as a filename.
+
+    Some NEPSE debenture/bond instruments encode a Nepali fiscal-year range directly in
+    their symbol (e.g. "NICD83/84"), which would otherwise be silently misread as a nested
+    path. These instruments are excluded from the equity screener anyway, so callers should
+    filter to classified equity symbols before calling upsert_rows — this is a defensive
+    backstop, not the primary filter.
+    """
+
+
 def _history_path(symbol: str):
+    if "/" in symbol or "\\" in symbol or symbol in (".", ".."):
+        raise InvalidSymbolError(f"symbol {symbol!r} is not safe to use as a filename")
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
     return HISTORY_DIR / f"{symbol}.csv"
 
@@ -29,6 +42,12 @@ def upsert_rows(symbol: str, new_rows: list) -> pd.DataFrame:
     incoming["date"] = pd.to_datetime(incoming["date"])
 
     combined = pd.concat([existing, incoming], ignore_index=True)
+    # Concatenating an empty (object-dtype) `existing` frame with a datetime64 `incoming`
+    # frame can upcast "date" back to object dtype, which silently defeats to_csv's
+    # date_format below (it only formats real datetime64 columns) and writes a spurious
+    # " 00:00:00" time component. Force it back explicitly so first-time writes and later
+    # writes are byte-for-byte consistent.
+    combined["date"] = pd.to_datetime(combined["date"])
     combined = combined.drop_duplicates(subset="date", keep="last")
     combined = combined.sort_values("date").reset_index(drop=True)
     combined = combined[HISTORY_CSV_COLUMNS]

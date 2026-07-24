@@ -28,6 +28,16 @@ def test_upsert_same_day_replaces_not_duplicates(tmp_path, monkeypatch):
     assert df.iloc[0]["close"] == 106
 
 
+def test_first_write_uses_clean_date_format_on_disk(tmp_path, monkeypatch):
+    monkeypatch.setattr(storage, "HISTORY_DIR", tmp_path)
+    storage.upsert_rows("TEST", [
+        {"date": "2026-07-20", "open": 100, "high": 105, "low": 99, "close": 104, "volume": 1000, "source": "daily_scrape"}
+    ])
+    written = (tmp_path / "TEST.csv").read_text()
+    assert "2026-07-20 00:00:00" not in written
+    assert "2026-07-20," in written
+
+
 def test_load_history_missing_symbol_returns_empty(tmp_path, monkeypatch):
     monkeypatch.setattr(storage, "HISTORY_DIR", tmp_path)
     df = storage.load_history("NOPE")
