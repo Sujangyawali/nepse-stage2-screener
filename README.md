@@ -8,11 +8,14 @@ NEPSE has no public official API, so this project scrapes public pages instead:
 
 - A daily GitHub Actions workflow scrapes [sharesansar.com](https://www.sharesansar.com/today-share-price)'s
   end-of-day price table and appends it to a per-symbol historical dataset committed in this repo.
-- A screener computes 50/150/200-session moving averages, 52-week highs/lows, and relative strength,
-  and evaluates each stock against the 8-point Trend Template.
+- A screener computes 52-week highs/lows and relative strength, and evaluates each stock
+  against the 8-point Trend Template two independent ways: classic 50/150/200-day **SMA**s,
+  and **Kaufman's Adaptive Moving Average (AMA)**.
 - Results are published as JSON and rendered by a static dashboard on GitHub Pages — no backend server.
 
-See [docs/DATA_LIMITATIONS.md](docs/DATA_LIMITATIONS.md) for important caveats about data quality
+See [TECHNICAL_DESIGN.md](TECHNICAL_DESIGN.md) for the full architecture, data model,
+known limitations, and a debugging guide for common failure modes. See
+[docs/DATA_LIMITATIONS.md](docs/DATA_LIMITATIONS.md) for the user-facing data-quality caveats
 (corporate-action price adjustments, backfill coverage).
 
 ## Local development
