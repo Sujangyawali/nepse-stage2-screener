@@ -31,7 +31,7 @@ python -m scraper.fetch_backfill NABIL ADBL ...   # or loop over scraper.storage
 
 # Run the full daily pipeline (scrape -> screen -> write docs/data/*.json).
 # This never commits to git itself — that's a separate step the CI workflow does.
-python scripts/run_daily.py
+python -m scripts.run_daily
 
 # Preview the dashboard
 python -m http.server 8000 -d docs
