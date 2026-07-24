@@ -1,0 +1,42 @@
+name: Daily scrape and screen
+
+on:
+  schedule:
+    # 10:30 UTC = 16:15 Asia/Kathmandu (NPT, UTC+5:45) — after NEPSE's ~15:00 NPT close,
+    # Sunday-Thursday (NEPSE's trading week; days are UTC weekday numbers, 0=Sun..4=Thu).
+    - cron: "30 10 * * 0-4"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-screen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run daily scrape + screen
+        run: python scripts/run_daily.py
+
+      - name: Commit and push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history data/meta/last_run.json docs/data
+          if git diff --cached --quiet; then
+            echo "no data changes to commit"
+          else
+            git commit -m "Daily scrape: $(date -u +%Y-%m-%d)"
+            git push
+          fi

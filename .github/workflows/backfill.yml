@@ -1,0 +1,52 @@
+name: Backfill / refresh symbol metadata
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbols:
+        description: "Space-separated symbols to backfill history for (blank = all known symbols in data/history)"
+        required: false
+        default: ""
+      refresh_sectors:
+        description: "Also refresh data/meta/symbols.json sector classification"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Refresh sector metadata
+        if: ${{ github.event.inputs.refresh_sectors == 'true' }}
+        run: python -m scraper.sector_filter
+
+      - name: Backfill symbol history
+        if: ${{ github.event.inputs.symbols != '' }}
+        run: python -m scraper.fetch_backfill ${{ github.event.inputs.symbols }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history data/meta
+          if git diff --cached --quiet; then
+            echo "no data changes to commit"
+          else
+            git commit -m "Backfill/refresh: $(date -u +%Y-%m-%d)"
+            git push
+          fi

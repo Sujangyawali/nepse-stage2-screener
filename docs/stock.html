@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock Detail — NEPSE Stage 2 Screener</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <p><a href="index.html">&larr; Back to candidates</a></p>
+    <h1 id="stockTitle">Loading…</h1>
+    <div id="warningBanner"></div>
+    <div class="chart-wrap">
+      <canvas id="priceChart" height="120"></canvas>
+    </div>
+    <h2>Trend Template scorecard</h2>
+    <table id="scorecardTable">
+      <tbody id="scorecardBody"></tbody>
+    </table>
+    <p class="status"><a href="DATA_LIMITATIONS.md">Data limitations &amp; methodology notes</a></p>
+  </main>
+  <script src="assets/js/vendor/chart.min.js"></script>
+  <script src="assets/js/stock.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEPSE Stage 2 Screener</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>NEPSE Stage 2 Screener</h1>
+    <p class="status">
+      Stage-2 candidates on the Nepal Stock Exchange, screened with Mark Minervini's Trend
+      Template. Data is scraped daily from public sharesansar.com pages — see
+      <a href="DATA_LIMITATIONS.md">data limitations</a> before trading on this.
+    </p>
+    <div class="meta-bar" id="metaBar"></div>
+    <div class="table-wrap">
+      <table id="stocksTable">
+        <thead>
+          <tr>
+            <th data-key="symbol">Symbol</th>
+            <th data-key="sector">Sector</th>
+            <th data-key="close">Close</th>
+            <th data-key="pct_from_52w_high">% from 52w High</th>
+            <th data-key="pct_above_52w_low">% above 52w Low</th>
+            <th data-key="rs_percentile">RS %ile</th>
+            <th data-key="score">Score</th>
+            <th data-key="is_candidate">Stage 2?</th>
+          </tr>
+        </thead>
+        <tbody id="stocksBody"></tbody>
+      </table>
+    </div>
+  </main>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
