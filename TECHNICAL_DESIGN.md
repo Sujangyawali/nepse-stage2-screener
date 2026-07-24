@@ -70,8 +70,11 @@ flowchart TB
     E --> F4
     F4 --> G
     G --> H
-    Repo -. "git commit + push\n(github-actions[bot])" .-> Repo
 ```
+
+After `run_daily.py` exits 0, the CI job's final step (`git add`, `commit`, `push` as
+`github-actions[bot]`) writes `F1`-`F4` back to `origin/main`, which triggers GitHub Pages
+to rebuild `Pages` from the fresh `docs/`.
 
 **Key architectural decision:** there is no backend server, no database, and no cloud
 hosting bill. GitHub Actions *is* the compute; the git repository *is* the database
@@ -123,10 +126,10 @@ sequenceDiagram
         Runner->>Runner: parse + normalize all rows
         Runner->>FS: filter to is_equity==true (data/meta/symbols.json)
         loop each of ~276 equities
-            Runner->>FS: upsert_rows(symbol) → data/history/<SYM>.csv
+            Runner->>FS: upsert_rows(symbol) → data/history/SYMBOL.csv
         end
         Runner->>Runner: screener.build_output.run()
-        Note over Runner: evaluate() × 276 symbols × {sma, ama}<br/>+ RS ranking (shared) → candidates.json, meta.json,<br/>history/<SYM>.json (candidates only)
+        Note over Runner: evaluate() x 276 symbols x (sma, ama)<br/>+ RS ranking (shared) -> candidates.json, meta.json,<br/>history/SYMBOL.json (candidates only)
         Runner->>FS: write data/meta/last_run.json
         Runner-->>Cron: exit 0
         Cron->>Git: git add + commit + push (github-actions[bot])
