@@ -5,7 +5,7 @@ on:
     # 10:30 UTC = 16:15 Asia/Kathmandu (NPT, UTC+5:45) — after NEPSE's ~15:00 NPT close,
     # Sunday-Thursday (NEPSE's trading week; days are UTC weekday numbers, 0=Sun..4=Thu).
     - cron: "30 10 * * 0-4"
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 permissions:
   contents: write
