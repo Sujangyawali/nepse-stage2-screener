@@ -35,7 +35,10 @@ def test_runs_pipeline_when_new_trading_session(tmp_path, monkeypatch):
     upserted = []
     monkeypatch.setattr(run_daily, "upsert_rows", lambda symbol, rows: upserted.append((symbol, rows)))
     monkeypatch.setattr(
-        run_daily, "run_screener", lambda **kw: {"universe_size": 1, "candidates_count": 0}
+        run_daily, "run_screener", lambda **kw: {
+            "sma": {"universe_size": 1, "candidates_count": 0},
+            "ama": {"universe_size": 1, "candidates_count": 0},
+        }
     )
 
     exit_code = run_daily.main()

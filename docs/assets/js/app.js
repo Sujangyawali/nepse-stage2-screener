@@ -1,5 +1,12 @@
 (function () {
-  const state = { stocks: [], sortKey: "score", sortDir: -1 };
+  const METHOD_BLURBS = {
+    sma: "Classic Minervini Trend Template: 50/150/200-day simple moving averages.",
+    ama: "Same 8 criteria, but using Kaufman's Adaptive Moving Average (AMA) instead of a " +
+      "fixed-window SMA — reacts faster to genuinely efficient trends and slower to choppy " +
+      "ones. Scored independently of the SMA tab; a stock can pass one and not the other.",
+  };
+
+  const state = { candidates: null, method: "sma", sortKey: "score", sortDir: -1 };
 
   function fmt(value, digits) {
     if (value === null || value === undefined || Number.isNaN(value)) return "—";
@@ -12,19 +19,26 @@
     return `<span class="badge ${cls}">${label}</span>`;
   }
 
-  function renderMeta(meta) {
-    const bar = document.getElementById("metaBar");
-    bar.innerHTML = `
-      <span>As of: <strong>${meta.as_of_trading_date || "n/a"}</strong></span>
-      <span>Universe: <strong>${meta.universe_size}</strong> equities</span>
-      <span>Stage 2 candidates: <strong>${meta.candidates_count}</strong></span>
-      <span>Generated: ${new Date(meta.generated_at).toLocaleString()}</span>
-    `;
+  function currentBlock() {
+    return state.candidates[state.method];
   }
 
-  function sortStocks() {
+  function renderMeta() {
+    const block = currentBlock();
+    const bar = document.getElementById("metaBar");
+    bar.innerHTML = `
+      <span>As of: <strong>${state.candidates.as_of_trading_date || "n/a"}</strong></span>
+      <span>Universe: <strong>${block.universe_size}</strong> equities</span>
+      <span>Stage 2 candidates (${state.method.toUpperCase()}): <strong>${block.candidates_count}</strong></span>
+      <span>Generated: ${new Date(state.candidates.generated_at).toLocaleString()}</span>
+    `;
+    document.getElementById("methodBlurb").textContent = METHOD_BLURBS[state.method];
+  }
+
+  function sortedStocks() {
     const { sortKey, sortDir } = state;
-    state.stocks.sort((a, b) => {
+    const stocks = currentBlock().stocks.slice();
+    stocks.sort((a, b) => {
       const av = a[sortKey];
       const bv = b[sortKey];
       if (av === null || av === undefined) return 1;
@@ -33,12 +47,12 @@
       if (av > bv) return 1 * sortDir;
       return 0;
     });
+    return stocks;
   }
 
   function renderTable() {
-    sortStocks();
     const body = document.getElementById("stocksBody");
-    body.innerHTML = state.stocks.map((s) => `
+    body.innerHTML = sortedStocks().map((s) => `
       <tr data-symbol="${s.symbol}">
         <td>${s.symbol}</td>
         <td>${s.sector || "—"}</td>
@@ -53,9 +67,15 @@
 
     body.querySelectorAll("tr").forEach((row) => {
       row.addEventListener("click", () => {
-        window.location.href = `stock.html?symbol=${encodeURIComponent(row.dataset.symbol)}`;
+        window.location.href =
+          `stock.html?symbol=${encodeURIComponent(row.dataset.symbol)}&method=${state.method}`;
       });
     });
+  }
+
+  function renderAll() {
+    renderMeta();
+    renderTable();
   }
 
   document.querySelectorAll("#stocksTable th[data-key]").forEach((th) => {
@@ -67,13 +87,23 @@
     });
   });
 
-  Promise.all([
-    fetch("data/candidates.json").then((r) => r.json()),
-  ])
-    .then(([candidates]) => {
-      state.stocks = candidates.stocks;
-      renderMeta(candidates);
-      renderTable();
+  document.querySelectorAll("#methodTabs .tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (btn.dataset.method === state.method) return;
+      state.method = btn.dataset.method;
+      document.querySelectorAll("#methodTabs .tab-btn").forEach((b) => {
+        b.classList.toggle("active", b === btn);
+        b.setAttribute("aria-selected", b === btn ? "true" : "false");
+      });
+      renderAll();
+    });
+  });
+
+  fetch("data/candidates.json")
+    .then((r) => r.json())
+    .then((candidates) => {
+      state.candidates = candidates;
+      renderAll();
     })
     .catch((err) => {
       document.getElementById("metaBar").textContent =

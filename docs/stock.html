@@ -10,6 +10,10 @@
   <main class="container">
     <p><a href="index.html">&larr; Back to candidates</a></p>
     <h1 id="stockTitle">Loading…</h1>
+    <div class="tabs" id="methodTabs" role="tablist">
+      <button class="tab-btn active" data-method="sma" role="tab" aria-selected="true">SMA Trend Template</button>
+      <button class="tab-btn" data-method="ama" role="tab" aria-selected="false">AMA Trend Template</button>
+    </div>
     <div id="warningBanner"></div>
     <div class="chart-wrap">
       <canvas id="priceChart" height="120"></canvas>

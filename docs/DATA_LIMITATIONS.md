@@ -26,6 +26,22 @@ correction** — moving averages, 52-week highs/lows, and relative strength for 
 may be distorted around the gap date. Always check a flagged stock's actual news/corporate
 action history before trusting its scorecard.
 
+## SMA vs. AMA tabs are scored independently
+
+The dashboard has two tabs running the same 8-criterion Trend Template, but against
+different moving averages:
+
+- **SMA** — the classic Minervini Trend Template, using fixed 50/150/200-day simple
+  moving averages.
+- **AMA** — the same 8 criteria, but using Kaufman's Adaptive Moving Average (KAMA) in
+  place of each SMA. AMA speeds up (tracks price closely) during efficient, one-directional
+  moves and slows down during choppy/sideways stretches, so it can flag a genuine trend
+  change faster than a backward-looking SMA — at the cost of being noisier in genuinely
+  indecisive markets.
+
+A stock's SMA and AMA candidacy are computed independently — it can pass one and fail the
+other. Neither is "more correct"; they're different lenses on the same price data.
+
 ## Relative Strength is universe-relative, not index-relative
 
 Minervini's RS Rating is normally computed against the broader market index. We don't yet
