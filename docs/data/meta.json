@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-24T03:56:16.731741+05:45",
-  "as_of_trading_date": "2026-11-23",
+  "generated_at": "2026-11-25T02:34:16.627741+05:45",
+  "as_of_trading_date": "2026-11-24",
   "universe_size": 276,
-  "sma_candidates_count": 10,
-  "ama_candidates_count": 8
+  "sma_candidates_count": 12,
+  "ama_candidates_count": 9
 }
