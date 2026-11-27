@@ -12,12 +12,36 @@ RS_TOP_PERCENTILE_THRESHOLD = 70  # "top 30%" of the universe
 CANDIDATE_SCORE_THRESHOLD = 8  # all 8 criteria must pass by default
 
 HISTORY_CHART_SESSIONS = 300
+# Charts are published for every candidate plus the top N rows of the dashboard's default
+# ordering (score, then RS percentile), so near-misses can be inspected too.
+CHART_TOP_N = 20
+
+ACTIVITY_TOP_N = 10
+# (field in the history CSV, label used in market_activity.json "categories")
+ACTIVITY_CATEGORIES = (("volume", "volume"), ("transactions", "transactions"), ("turnover", "turnover"))
 
 
 def _equity_symbols_with_history() -> list:
     meta = load_symbols_meta()
     symbols = known_symbols()
     return [s for s in symbols if meta.get(s, {}).get("is_equity", False)]
+
+
+def _rank_key(stock: dict) -> tuple:
+    """Ranking used for the dashboard's "#" column (lower sorts first):
+    1. Trend Template score, highest first (8/8 candidates on top)
+    2. RS percentile, highest first — the IBD/Minervini RS Rating, the standard way to rank
+       Trend Template passers when only price data is available
+    3. Distance from the 52-week high, closest first (Minervini favours stocks near highs)
+    """
+    rs = stock["rs_percentile"]
+    from_high = stock["pct_from_52w_high"]
+    return (
+        -stock["score"],
+        -(rs if rs is not None else -1),
+        from_high if from_high is not None else float("inf"),
+        stock["symbol"],
+    )
 
 
 def _evaluate_universe(symbols: list, histories: dict, meta: dict, rs_percentiles: dict) -> tuple:
@@ -61,7 +85,9 @@ def _evaluate_universe(symbols: list, histories: dict, meta: dict, rs_percentile
             "data_quality": result["data_quality"],
         })
 
-    stocks.sort(key=lambda s: (s["score"], s["rs_percentile"] or 0), reverse=True)
+    stocks.sort(key=_rank_key)
+    for position, stock in enumerate(stocks, start=1):
+        stock["rank"] = position
     candidates_count = sum(1 for s in stocks if s["is_candidate"])
 
     return {
@@ -92,6 +118,12 @@ def build_candidates() -> dict:
         "as_of_trading_date": as_of_trading_date,
         **block,
     }, histories
+
+
+def symbols_to_publish_charts(stocks: list, top_n: int = CHART_TOP_N) -> set:
+    """All candidates plus the first `top_n` stocks; `stocks` is already sorted by score
+    then RS percentile, which is also the dashboard table's default order."""
+    return {s["symbol"] for s in stocks if s["is_candidate"]} | {s["symbol"] for s in stocks[:top_n]}
 
 
 def write_history_json(symbol: str, df) -> dict:
@@ -145,6 +177,68 @@ def _json_safe(value):
     return value
 
 
+def build_market_activity(histories: dict, stocks: list, as_of_trading_date, top_n: int = ACTIVITY_TOP_N) -> dict:
+    """Top `top_n` equities by volume, number of transactions and turnover for the latest
+    session, merged so a stock in several lists appears once with every category it's in.
+
+    Only symbols that traded on `as_of_trading_date` count. Transactions and turnover come
+    from the daily scrape only (backfilled history doesn't have them), so a category with
+    no data for that session is simply empty.
+    """
+    by_symbol = {s["symbol"]: s for s in stocks}
+    session = []
+    for sym, df in histories.items():
+        if df.empty or as_of_trading_date is None:
+            continue
+        last = df.iloc[-1]
+        if last["date"].strftime("%Y-%m-%d") != as_of_trading_date:
+            continue
+        prev_close = df["close"].iloc[-2] if len(df) > 1 else None
+        session.append({
+            "symbol": sym,
+            "close": last["close"],
+            "change_pct": (last["close"] / prev_close - 1) * 100 if prev_close else None,
+            **{field: last.get(field) for field, _ in ACTIVITY_CATEGORIES},
+        })
+
+    entries = {}
+    for field, label in ACTIVITY_CATEGORIES:
+        ranked = [r for r in session if r[field] is not None and not pd_isna(r[field]) and r[field] > 0]
+        ranked.sort(key=lambda r: (-r[field], r["symbol"]))
+        for position, row in enumerate(ranked[:top_n], start=1):
+            entry = entries.setdefault(row["symbol"], {**row, "ranks": {}, "categories": []})
+            entry["ranks"][label] = position
+            entry["categories"].append(label)
+
+    result = []
+    for sym, entry in entries.items():
+        stock = by_symbol.get(sym, {})
+        result.append({
+            "symbol": sym,
+            "name": stock.get("name", ""),
+            "sector": stock.get("sector", ""),
+            "close": _rounded(entry["close"], 2),
+            "change_pct": _rounded(entry["change_pct"], 2),
+            "volume": _rounded(entry["volume"], 0),
+            "transactions": _rounded(entry["transactions"], 0),
+            "turnover": _rounded(entry["turnover"], 2),
+            "ranks": entry["ranks"],
+            "categories": entry["categories"],
+            "screener_rank": stock.get("rank"),
+            "score": stock.get("score"),
+            "is_candidate": stock.get("is_candidate", False),
+        })
+    # Stocks in the most lists first, then by their best (lowest) rank, then turnover.
+    result.sort(key=lambda e: (-len(e["categories"]), min(e["ranks"].values()), -(e["turnover"] or 0)))
+
+    return {
+        "as_of_trading_date": as_of_trading_date,
+        "top_n": top_n,
+        "categories": [label for _, label in ACTIVITY_CATEGORIES],
+        "stocks": result,
+    }
+
+
 def run(write_history_for_all: bool = False) -> dict:
     candidates, histories = build_candidates()
 
@@ -162,11 +256,15 @@ def run(write_history_for_all: bool = False) -> dict:
     }
     (DOCS_DATA_DIR / "meta.json").write_text(json.dumps(meta, indent=2))
 
+    activity = build_market_activity(histories, candidates["stocks"], candidates["as_of_trading_date"])
+    (DOCS_DATA_DIR / "market_activity.json").write_text(json.dumps(_json_safe(activity), indent=2))
+
     if write_history_for_all:
         symbols_to_chart = set(histories.keys())
     else:
-        symbols_to_chart = {s["symbol"] for s in candidates["stocks"] if s["is_candidate"]}
-        # Drop charts for symbols that are no longer candidates, so the site never serves
+        symbols_to_chart = symbols_to_publish_charts(candidates["stocks"])
+        symbols_to_chart |= {s["symbol"] for s in activity["stocks"]}
+        # Drop charts for symbols that no longer qualify, so the site never serves
         # a stale history file computed by an older run (or an older MA formula).
         for stale in history_dir.glob("*.json"):
             if stale.stem not in symbols_to_chart:

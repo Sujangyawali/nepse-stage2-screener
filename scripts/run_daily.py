@@ -67,6 +67,8 @@ def main(write_history_for_all: bool = False) -> int:
             "low": row["low"],
             "close": row["close"],
             "volume": row["volume"],
+            "turnover": row.get("turnover"),
+            "transactions": row.get("transactions"),
             "source": "daily_scrape",
         }])
 

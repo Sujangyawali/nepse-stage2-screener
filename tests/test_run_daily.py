@@ -43,6 +43,6 @@ def test_runs_pipeline_when_new_trading_session(tmp_path, monkeypatch):
     assert exit_code == 0
     assert upserted == [("TEST", [{
         "date": "2026-07-23", "open": 1, "high": 2, "low": 1, "close": 1.5,
-        "volume": 100, "source": "daily_scrape",
+        "volume": 100, "turnover": None, "transactions": None, "source": "daily_scrape",
     }])]
     assert json.loads(last_run_path.read_text())["last_trading_date"] == "2026-07-23"

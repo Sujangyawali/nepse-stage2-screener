@@ -24,6 +24,14 @@
     return Number(value).toFixed(digits === undefined ? 2 : digits);
   }
 
+  // Return to the dashboard tab the user came from (e.g. index.html#activity).
+  try {
+    const ref = new URL(document.referrer);
+    if (ref.origin === location.origin && /(\/|index\.html)$/.test(ref.pathname)) {
+      document.getElementById("backLink").href = ref.pathname + ref.hash;
+    }
+  } catch (e) { /* no or foreign referrer: keep the default link */ }
+
   const params = new URLSearchParams(window.location.search);
   const symbol = params.get("symbol");
 
@@ -61,6 +69,7 @@
     `).join("");
     document.getElementById("scorecardBody").innerHTML = rows + `
       <tr><td><strong>Score</strong></td><td><strong>${stock.score} / 8</strong></td></tr>
+      <tr><td>Rank</td><td>#${stock.rank ?? "—"} of ${state.candidates.universe_size}</td></tr>
       <tr><td>Close</td><td>${fmt(stock.close)}</td></tr>
       <tr><td>AMA 20</td><td>${fmt(stock.ma20)}</td></tr>
       <tr><td>AMA 50</td><td>${fmt(stock.ma50)}</td></tr>

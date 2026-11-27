@@ -129,7 +129,7 @@ sequenceDiagram
             Runner->>FS: upsert_rows(symbol) → data/history/SYMBOL.csv
         end
         Runner->>Runner: screener.build_output.run()
-        Note over Runner: evaluate() x 276 symbols<br/>+ RS ranking -> candidates.json, meta.json,<br/>history/SYMBOL.json (candidates only)
+        Note over Runner: evaluate() x 276 symbols<br/>+ RS ranking -> candidates.json, meta.json,<br/>history/SYMBOL.json (candidates + top 20)
         Runner->>FS: write data/meta/last_run.json
         Runner-->>Cron: exit 0
         Cron->>Git: git add + commit + push (github-actions[bot])
@@ -151,11 +151,13 @@ already-processed-this-session case.
 ### 5.1 `data/history/<SYMBOL>.csv` (source of truth, one file per equity)
 
 ```
-date,open,high,low,close,volume,source
-2025-02-27,498.7,518.0,498.0,501.8,123140.0,backfill_api
+date,open,high,low,close,volume,turnover,transactions,source
+2025-02-27,498.7,518.0,498.0,501.8,123140.0,,,backfill_api
 ...
-2026-07-23,546.0,550.0,545.0,550.0,40281.0,daily_scrape
+2026-11-27,1338.0,1349.9,1338.0,1345.9,46467.0,62360997.2,393.0,daily_scrape
 ```
+`turnover`/`transactions` exist only on `daily_scrape` rows from 2026-11-27 onward (the
+backfill feed doesn't provide them).
 `source` tracks provenance (`backfill_api` vs `daily_scrape`) since the two pipelines hit
 different sharesansar endpoints and could theoretically disagree on precision. Upsert is
 by `date`: a rerun replaces that day's row rather than duplicating it.
@@ -184,11 +186,20 @@ Each stock entry: `symbol, name, sector, close, ma20, ma50, ma150, ma200, week52
 pct_above_52w_low, pct_from_52w_high, rs_percentile, criteria{8 booleans}, score, is_candidate,
 history_days_available, data_quality{sufficient_history, possible_corporate_action_gap}`.
 
-### 5.4 `docs/data/history/<SYMBOL>.json` (candidates only, ~300 sessions)
+### 5.4 `docs/data/history/<SYMBOL>.json` (candidates + top 20 by score, ~300 sessions)
 
 One entry per date: `date, open, high, low, close, volume, ama20, ama50, ama150, ama200` (rounded to 4 dp). AMAs are computed on the
-full history before trimming to the display window (the AMA is recursive). Files for symbols
-that are no longer candidates are deleted on each run.
+full history before trimming to the display window (the AMA is recursive). Published for every
+candidate, the top `CHART_TOP_N = 20` stocks by score/RS, and every market-activity stock;
+files for symbols that no longer qualify are deleted on each run.
+
+### 5.5 `docs/data/market_activity.json` (dashboard "Market Activity" tab)
+
+Top `ACTIVITY_TOP_N = 10` equities of the latest session by volume, transactions and
+turnover, merged so a symbol in several lists appears once. Each entry carries `ranks`
+(e.g. `{"volume": 1, "turnover": 1}`), `categories`, close, `change_pct`, and its
+screener `rank`/`score`. Sorted by number of lists, then best rank, then turnover. Built by
+`screener.build_output.build_market_activity()`.
 
 ---
 

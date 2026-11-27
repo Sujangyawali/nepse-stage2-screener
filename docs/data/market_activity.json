@@ -1,0 +1,360 @@
+{
+  "as_of_trading_date": "2026-11-27",
+  "top_n": 10,
+  "categories": [
+    "volume",
+    "transactions",
+    "turnover"
+  ],
+  "stocks": [
+    {
+      "symbol": "LSL",
+      "name": "Laxmi Sunrise Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 287.0,
+      "change_pct": 0.07,
+      "volume": 872624.0,
+      "transactions": 867.0,
+      "turnover": 249934653.0,
+      "ranks": {
+        "volume": 1,
+        "transactions": 4,
+        "turnover": 1
+      },
+      "categories": [
+        "volume",
+        "transactions",
+        "turnover"
+      ],
+      "screener_rank": 2,
+      "score": 8,
+      "is_candidate": true
+    },
+    {
+      "symbol": "NICA",
+      "name": "NIC Asia Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 265.2,
+      "change_pct": -18.4,
+      "volume": 519522.0,
+      "transactions": 2479.0,
+      "turnover": 137339514.0,
+      "ranks": {
+        "volume": 4,
+        "transactions": 1,
+        "turnover": 4
+      },
+      "categories": [
+        "volume",
+        "transactions",
+        "turnover"
+      ],
+      "screener_rank": 214,
+      "score": 0,
+      "is_candidate": false
+    },
+    {
+      "symbol": "GBIME",
+      "name": "Global IME Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 278.9,
+      "change_pct": 0.0,
+      "volume": 781085.0,
+      "transactions": 896.0,
+      "turnover": 216767539.3,
+      "ranks": {
+        "volume": 2,
+        "transactions": 3,
+        "turnover": 2
+      },
+      "categories": [
+        "volume",
+        "transactions",
+        "turnover"
+      ],
+      "screener_rank": 8,
+      "score": 8,
+      "is_candidate": true
+    },
+    {
+      "symbol": "HURJA",
+      "name": "Himalaya Urja Bikas Company Limited",
+      "sector": "Hydropower",
+      "close": 281.7,
+      "change_pct": -3.36,
+      "volume": 529897.0,
+      "transactions": 1020.0,
+      "turnover": 151327449.4,
+      "ranks": {
+        "volume": 3,
+        "transactions": 2,
+        "turnover": 3
+      },
+      "categories": [
+        "volume",
+        "transactions",
+        "turnover"
+      ],
+      "screener_rank": 6,
+      "score": 8,
+      "is_candidate": true
+    },
+    {
+      "symbol": "PHCL",
+      "name": "Peoples Hydropower Company Limited",
+      "sector": "Hydropower",
+      "close": 382.9,
+      "change_pct": 0.26,
+      "volume": 314633.0,
+      "transactions": 621.0,
+      "turnover": 119946922.7,
+      "ranks": {
+        "volume": 7,
+        "transactions": 6,
+        "turnover": 6
+      },
+      "categories": [
+        "volume",
+        "transactions",
+        "turnover"
+      ],
+      "screener_rank": 3,
+      "score": 8,
+      "is_candidate": true
+    },
+    {
+      "symbol": "GHL",
+      "name": "Ghalemdi Hydro Limited",
+      "sector": "Hydropower",
+      "close": 317.6,
+      "change_pct": -1.76,
+      "volume": 393819.0,
+      "transactions": 470.0,
+      "turnover": 125170822.3,
+      "ranks": {
+        "volume": 5,
+        "turnover": 5
+      },
+      "categories": [
+        "volume",
+        "turnover"
+      ],
+      "screener_rank": 79,
+      "score": 4,
+      "is_candidate": false
+    },
+    {
+      "symbol": "NMB",
+      "name": "NMB Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 279.1,
+      "change_pct": -1.38,
+      "volume": 329067.0,
+      "transactions": 470.0,
+      "turnover": 91589984.0,
+      "ranks": {
+        "volume": 6,
+        "turnover": 9
+      },
+      "categories": [
+        "volume",
+        "turnover"
+      ],
+      "screener_rank": 80,
+      "score": 4,
+      "is_candidate": false
+    },
+    {
+      "symbol": "SAHAS",
+      "name": "Sahas Urja Limited",
+      "sector": "Hydropower",
+      "close": 754.0,
+      "change_pct": -0.4,
+      "volume": 121719.0,
+      "transactions": 555.0,
+      "turnover": 91293723.5,
+      "ranks": {
+        "transactions": 7,
+        "turnover": 10
+      },
+      "categories": [
+        "transactions",
+        "turnover"
+      ],
+      "screener_rank": 5,
+      "score": 8,
+      "is_candidate": true
+    },
+    {
+      "symbol": "SOPL",
+      "name": "Sopan Pharmaceuticals Limited",
+      "sector": "Manufacturing and Processing",
+      "close": 555.5,
+      "change_pct": -5.37,
+      "volume": 53875.0,
+      "transactions": 700.0,
+      "turnover": 30596818.4,
+      "ranks": {
+        "transactions": 5
+      },
+      "categories": [
+        "transactions"
+      ],
+      "screener_rank": 241,
+      "score": 0,
+      "is_candidate": false
+    },
+    {
+      "symbol": "RSML",
+      "name": "Reliance Spinning Mills Limited",
+      "sector": "Manufacturing and Processing",
+      "close": 2770.0,
+      "change_pct": 0.18,
+      "volume": 40349.0,
+      "transactions": 452.0,
+      "turnover": 111306539.5,
+      "ranks": {
+        "turnover": 7
+      },
+      "categories": [
+        "turnover"
+      ],
+      "screener_rank": 179,
+      "score": 0,
+      "is_candidate": false
+    },
+    {
+      "symbol": "SHPC",
+      "name": "Sanima Mai Hydropower Limited",
+      "sector": "Hydropower",
+      "close": 577.2,
+      "change_pct": 0.86,
+      "volume": 165262.0,
+      "transactions": 423.0,
+      "turnover": 95108141.4,
+      "ranks": {
+        "turnover": 8
+      },
+      "categories": [
+        "turnover"
+      ],
+      "screener_rank": 16,
+      "score": 7,
+      "is_candidate": false
+    },
+    {
+      "symbol": "PCBL",
+      "name": "Prime Commercial Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 279.7,
+      "change_pct": 0.58,
+      "volume": 254045.0,
+      "transactions": 315.0,
+      "turnover": 70976114.3,
+      "ranks": {
+        "volume": 8
+      },
+      "categories": [
+        "volume"
+      ],
+      "screener_rank": 13,
+      "score": 7,
+      "is_candidate": false
+    },
+    {
+      "symbol": "SOHL",
+      "name": "Solu Hydropower Limited",
+      "sector": "Hydropower",
+      "close": 618.0,
+      "change_pct": -1.73,
+      "volume": 89133.0,
+      "transactions": 537.0,
+      "turnover": 55247773.5,
+      "ranks": {
+        "transactions": 8
+      },
+      "categories": [
+        "transactions"
+      ],
+      "screener_rank": 186,
+      "score": 0,
+      "is_candidate": false
+    },
+    {
+      "symbol": "SGHC",
+      "name": "Swet-Ganga Hydropower & Construction Limited",
+      "sector": "Hydropower",
+      "close": 368.4,
+      "change_pct": -0.32,
+      "volume": 240552.0,
+      "transactions": 520.0,
+      "turnover": 89404005.6,
+      "ranks": {
+        "transactions": 9
+      },
+      "categories": [
+        "transactions"
+      ],
+      "screener_rank": 12,
+      "score": 8,
+      "is_candidate": true
+    },
+    {
+      "symbol": "CITY",
+      "name": "City Hotel Limited",
+      "sector": "Hotel & Tourism",
+      "close": 306.0,
+      "change_pct": 0.99,
+      "volume": 252054.0,
+      "transactions": 304.0,
+      "turnover": 75759854.1,
+      "ranks": {
+        "volume": 9
+      },
+      "categories": [
+        "volume"
+      ],
+      "screener_rank": 242,
+      "score": 0,
+      "is_candidate": false
+    },
+    {
+      "symbol": "KBL",
+      "name": "Kumari Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 233.1,
+      "change_pct": -0.89,
+      "volume": 248109.0,
+      "transactions": 395.0,
+      "turnover": 58109325.6,
+      "ranks": {
+        "volume": 10
+      },
+      "categories": [
+        "volume"
+      ],
+      "screener_rank": 81,
+      "score": 4,
+      "is_candidate": false
+    },
+    {
+      "symbol": "SGHL",
+      "name": "Sanigad Hydro Limited",
+      "sector": "Hydropower",
+      "close": 467.0,
+      "change_pct": -1.37,
+      "volume": 30081.0,
+      "transactions": 507.0,
+      "turnover": 14126029.2,
+      "ranks": {
+        "transactions": 10
+      },
+      "categories": [
+        "transactions"
+      ],
+      "screener_rank": 183,
+      "score": 0,
+      "is_candidate": false
+    }
+  ]
+}

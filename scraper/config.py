@@ -40,5 +40,5 @@ EXCLUDED_SECTORS = {
 }
 
 HISTORY_CSV_COLUMNS = [
-    "date", "open", "high", "low", "close", "volume", "source",
+    "date", "open", "high", "low", "close", "volume", "turnover", "transactions", "source",
 ]

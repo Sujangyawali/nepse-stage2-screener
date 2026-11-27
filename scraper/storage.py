@@ -32,7 +32,8 @@ def load_history(symbol: str) -> pd.DataFrame:
 def upsert_rows(symbol: str, new_rows: list) -> pd.DataFrame:
     """
     new_rows: list of dicts with keys date (str 'YYYY-MM-DD' or Timestamp), open, high, low,
-      close, volume, source. Rows with a date already present are replaced (safe re-run same
+      close, volume, source, and optionally turnover/transactions (only the daily scrape has
+      them — backfilled rows leave them blank). Rows with a date already present are replaced (safe re-run same
       day / CI retries); new dates are appended. Result is sorted and de-duplicated by date.
     """
     existing = load_history(symbol)
@@ -50,7 +51,8 @@ def upsert_rows(symbol: str, new_rows: list) -> pd.DataFrame:
     combined["date"] = pd.to_datetime(combined["date"])
     combined = combined.drop_duplicates(subset="date", keep="last")
     combined = combined.sort_values("date").reset_index(drop=True)
-    combined = combined[HISTORY_CSV_COLUMNS]
+    # reindex (not [...]) so files written before a column existed gain it as blanks.
+    combined = combined.reindex(columns=HISTORY_CSV_COLUMNS)
 
     path = _history_path(symbol)
     combined.to_csv(path, index=False, date_format="%Y-%m-%d")

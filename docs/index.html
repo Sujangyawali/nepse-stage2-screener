@@ -14,28 +14,70 @@
       Template. Data is scraped daily from public sharesansar.com pages — see
       <a href="DATA_LIMITATIONS.md">data limitations</a> before trading on this.
     </p>
-    <p class="status">
-      Trend Template criteria use the adaptive moving average (AMA 50/150/200) computed the
-      same way as the "Moving Average Adaptive" indicator on NepseAlpha's daily chart.
-    </p>
-    <div class="meta-bar" id="metaBar"></div>
-    <div class="table-wrap">
-      <table id="stocksTable">
-        <thead>
-          <tr>
-            <th data-key="symbol">Symbol</th>
-            <th data-key="sector">Sector</th>
-            <th data-key="close">Close</th>
-            <th data-key="pct_from_52w_high">% from 52w High</th>
-            <th data-key="pct_above_52w_low">% above 52w Low</th>
-            <th data-key="rs_percentile">RS %ile</th>
-            <th data-key="score">Score</th>
-            <th data-key="is_candidate">Stage 2?</th>
-          </tr>
-        </thead>
-        <tbody id="stocksBody"></tbody>
-      </table>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="screener" role="tab" aria-selected="true">Stage 2 Screener</button>
+      <button class="tab-btn" data-tab="activity" role="tab" aria-selected="false">Market Activity</button>
     </div>
+
+    <section id="tab-screener" role="tabpanel">
+      <p class="status">
+        Trend Template criteria use the adaptive moving average (AMA 50/150/200) computed the
+        same way as the "Moving Average Adaptive" indicator on NepseAlpha's daily chart.
+        <strong>#</strong> ranks every stock by Trend Template score, then RS rating (IBD-style
+        3/6/9/12-month relative strength), then closeness to the 52-week high. Click a column
+        header to re-sort; each stock keeps its rank number.
+      </p>
+      <div class="meta-bar" id="metaBar"></div>
+      <div class="table-wrap">
+        <table id="stocksTable">
+          <thead>
+            <tr>
+              <th data-key="rank">#</th>
+              <th data-key="symbol">Symbol</th>
+              <th data-key="sector">Sector</th>
+              <th data-key="close">Close</th>
+              <th data-key="pct_from_52w_high">% from 52w High</th>
+              <th data-key="pct_above_52w_low">% above 52w Low</th>
+              <th data-key="rs_percentile">RS %ile</th>
+              <th data-key="score">Score</th>
+              <th data-key="is_candidate">Stage 2?</th>
+            </tr>
+          </thead>
+          <tbody id="stocksBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tab-activity" role="tabpanel" hidden>
+      <p class="status">
+        The latest session's top 10 stocks by <strong>volume</strong>, number of
+        <strong>transactions</strong> and <strong>turnover</strong>, merged into one list — a
+        stock in several top 10s appears once, tagged with every list it's in (rank shown next
+        to each value; Vol = volume, Txn = transactions, T/O = turnover). Stocks in the most
+        lists come first.
+      </p>
+      <div class="meta-bar" id="activityMeta"></div>
+      <div class="table-wrap">
+        <table id="activityTable">
+          <thead>
+            <tr>
+              <th data-key="order">#</th>
+              <th data-key="symbol">Symbol</th>
+              <th data-key="sector">Sector</th>
+              <th data-key="close">Close</th>
+              <th data-key="change_pct">Change</th>
+              <th data-key="volume">Volume</th>
+              <th data-key="transactions">Transactions</th>
+              <th data-key="turnover">Turnover</th>
+              <th data-key="list_count">Top 10 in</th>
+              <th data-key="screener_rank">Stage 2</th>
+            </tr>
+          </thead>
+          <tbody id="activityBody"></tbody>
+        </table>
+      </div>
+    </section>
   </main>
   <script src="assets/js/app.js"></script>
 </body>
