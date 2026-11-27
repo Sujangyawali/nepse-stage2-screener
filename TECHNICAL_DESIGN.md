@@ -52,7 +52,7 @@ flowchart TB
     end
 
     subgraph Pages["GitHub Pages (static hosting)"]
-        G["docs/index.html, stock.html\napp.js, stock.js, Chart.js"]
+        G["docs/index.html, stock.html\napp.js, stock.js, Lightweight Charts"]
     end
 
     H["Browser (any visitor)"]
@@ -100,7 +100,7 @@ Everything is free at this scale and requires no credentials to operate.
 | `screener/build_output.py` | Orchestrates a full run: loads history, evaluates every symbol, writes `docs/data/*.json`, prunes stale history files |
 | `scripts/run_daily.py` | Single entrypoint for CI and local dev: scrape → filter to equities → store → screen → publish. Distinguishes "no new session" (clean no-op) from real failure (non-zero exit) |
 | `docs/index.html` + `assets/js/app.js` | Candidate list dashboard, client-side sortable table |
-| `docs/stock.html` + `assets/js/stock.js` | Per-stock detail: Chart.js price + AMA 20/50/150/200 chart, 8-criterion scorecard |
+| `docs/stock.html` + `assets/js/stock.js` | Per-stock detail: candlestick + volume chart with AMA 20/50/150/200 (TradingView Lightweight Charts, vendored), hover legend, 8-criterion scorecard |
 | `.github/workflows/daily_scrape.yml` | Scheduled automation — the only thing that runs unattended |
 | `.github/workflows/backfill.yml` | Manual-only: re-run historical backfill and/or refresh sector classification |
 
@@ -186,7 +186,7 @@ history_days_available, data_quality{sufficient_history, possible_corporate_acti
 
 ### 5.4 `docs/data/history/<SYMBOL>.json` (candidates only, ~300 sessions)
 
-One entry per date: `date, close, ama20, ama50, ama150, ama200`. AMAs are computed on the
+One entry per date: `date, open, high, low, close, volume, ama20, ama50, ama150, ama200` (rounded to 4 dp). AMAs are computed on the
 full history before trimming to the display window (the AMA is recursive). Files for symbols
 that are no longer candidates are deleted on each run.
 

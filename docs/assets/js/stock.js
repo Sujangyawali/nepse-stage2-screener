@@ -32,7 +32,7 @@
     return;
   }
 
-  const state = { candidates: null, history: null, chart: null };
+  const state = { candidates: null, history: null, chart: null, bars: [], pointByDate: new Map() };
 
   function renderWarnings(stock) {
     const banner = document.getElementById("warningBanner");
@@ -71,31 +71,145 @@
     `;
   }
 
-  function chartDatasets() {
-    const series = state.history.series;
-    return [
-      { label: "Close", data: series.map((p) => p.close), borderColor: "#4ade80", pointRadius: 0, borderWidth: 2 },
-      ...MA_PERIODS.map((period) => ({
-        label: `AMA ${period}`,
-        data: series.map((p) => p[`ama${period}`]),
-        borderColor: MA_COLORS[period],
-        pointRadius: 0,
-        borderWidth: 1,
-      })),
-    ];
+  // ---- Chart (TradingView Lightweight Charts, NepseAlpha-style) -------------------
+
+  const UP = "#26a69a";
+  const DOWN = "#ef5350";
+  const INITIAL_BARS = 130; // ~6 months of NEPSE sessions; scroll/zoom for the rest
+
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  function themeOptions() {
+    const border = cssVar("--border");
+    return {
+      layout: { background: { type: "solid", color: cssVar("--bg") }, textColor: cssVar("--muted"), fontSize: 12 },
+      grid: { vertLines: { color: border }, horzLines: { color: border } },
+      rightPriceScale: { borderColor: border },
+      timeScale: { borderColor: border },
+    };
+  }
+
+  function fmtVolume(v) {
+    if (v === null || v === undefined) return "—";
+    if (v >= 1e6) return (v / 1e6).toFixed(2) + "M";
+    if (v >= 1e3) return (v / 1e3).toFixed(2) + "K";
+    return String(Math.round(v));
+  }
+
+  function buildBars(series) {
+    // Older history files only carried `close`; fall back to a flat bar so they still draw.
+    return series.map((p) => {
+      const close = p.close;
+      return {
+        time: p.date,
+        open: p.open ?? close,
+        high: p.high ?? close,
+        low: p.low ?? close,
+        close,
+        volume: p.volume ?? null,
+      };
+    }).filter((b) => b.close !== null && b.close !== undefined);
+  }
+
+  function renderLegend(idx) {
+    const legend = document.getElementById("chartLegend");
+    const bar = state.bars[idx];
+    if (!bar) { legend.innerHTML = ""; return; }
+    const prev = state.bars[idx - 1];
+    const change = prev ? (bar.close / prev.close - 1) * 100 : null;
+    const color = bar.close >= bar.open ? UP : DOWN;
+    const point = state.pointByDate.get(bar.time) || {};
+    const amas = MA_PERIODS.map((p) => `
+      <span class="lg-item"><span class="lg-dot" style="background:${MA_COLORS[p]}"></span>AMA ${p}
+        <b style="color:${MA_COLORS[p]}">${fmt(point[`ama${p}`])}</b></span>`).join("");
+    legend.innerHTML = `
+      <div class="lg-row">
+        <span class="lg-date">${bar.time}</span>
+        <span>O <b style="color:${color}">${fmt(bar.open)}</b></span>
+        <span>H <b style="color:${color}">${fmt(bar.high)}</b></span>
+        <span>L <b style="color:${color}">${fmt(bar.low)}</b></span>
+        <span>C <b style="color:${color}">${fmt(bar.close)}</b></span>
+        ${change === null ? "" : `<b style="color:${change >= 0 ? UP : DOWN}">${change >= 0 ? "+" : ""}${fmt(change)}%</b>`}
+        <span>Vol <b>${fmtVolume(bar.volume)}</b></span>
+      </div>
+      <div class="lg-row">${amas}</div>`;
   }
 
   function renderChart() {
-    const labels = state.history.series.map((p) => p.date);
-    state.chart = new Chart(document.getElementById("priceChart"), {
-      type: "line",
-      data: { labels, datasets: chartDatasets() },
-      options: {
-        responsive: true,
-        interaction: { mode: "index", intersect: false },
-        scales: { x: { ticks: { maxTicksLimit: 12 } } },
-      },
+    const container = document.getElementById("priceChart");
+    const bars = buildBars(state.history.series);
+    state.bars = bars;
+    state.pointByDate = new Map(state.history.series.map((p) => [p.date, p]));
+    if (!bars.length) {
+      container.textContent = "No price history available for this symbol.";
+      return;
+    }
+    const indexByTime = new Map(bars.map((b, i) => [b.time, i]));
+
+    const chart = LightweightCharts.createChart(container, {
+      autoSize: true,
+      ...themeOptions(),
+      crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+      timeScale: { ...themeOptions().timeScale, rightOffset: 4 },
+      localization: { priceFormatter: (p) => p.toFixed(2) },
     });
+    state.chart = chart;
+
+    const candles = chart.addCandlestickSeries({
+      upColor: UP, downColor: DOWN, wickUpColor: UP, wickDownColor: DOWN, borderVisible: false,
+      priceLineVisible: false,
+    });
+    candles.priceScale().applyOptions({ scaleMargins: { top: 0.14, bottom: 0.24 } });
+    candles.setData(bars.map(({ time, open, high, low, close }) => ({ time, open, high, low, close })));
+
+    if (bars.some((b) => b.volume !== null)) {
+      const volume = chart.addHistogramSeries({
+        priceScaleId: "",
+        priceFormat: { type: "volume" },
+        priceLineVisible: false,
+        lastValueVisible: false,
+      });
+      volume.priceScale().applyOptions({ scaleMargins: { top: 0.8, bottom: 0 } });
+      volume.setData(bars.map((b) => ({
+        time: b.time,
+        value: b.volume ?? 0,
+        color: (b.close >= b.open ? UP : DOWN) + "80",
+      })));
+    }
+
+    MA_PERIODS.forEach((period) => {
+      const line = chart.addLineSeries({
+        color: MA_COLORS[period],
+        lineWidth: 2,
+        priceLineVisible: false,
+        crosshairMarkerVisible: false,
+      });
+      line.setData(state.history.series
+        .filter((p) => indexByTime.has(p.date))
+        .map((p) => {
+          const v = p[`ama${period}`];
+          return v === null || v === undefined ? { time: p.date } : { time: p.date, value: v };
+        }));
+    });
+
+    const last = bars.length - 1;
+    chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, last - INITIAL_BARS), to: last + 4 });
+    renderLegend(last);
+    chart.subscribeCrosshairMove((param) => {
+      const idx = param.time !== undefined ? indexByTime.get(param.time) : undefined;
+      renderLegend(idx === undefined ? last : idx);
+    });
+
+    document.getElementById("chartReset").addEventListener("click", () => {
+      chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, last - INITIAL_BARS), to: last + 4 });
+      chart.priceScale("right").applyOptions({ autoScale: true });
+    });
+
+    const scheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const retheme = () => chart.applyOptions(themeOptions());
+    if (scheme.addEventListener) scheme.addEventListener("change", retheme);
   }
 
   function renderAll() {
@@ -111,22 +225,24 @@
     if (state.history) renderChart();
   }
 
-  Promise.all([
-    fetch("data/candidates.json").then((r) => r.json()),
-    fetch(`data/history/${encodeURIComponent(symbol)}.json`).then((r) => {
-      if (!r.ok) throw new Error("no chart history for this symbol");
-      return r.json();
-    }),
-  ])
+  const loadHistory = fetch(`data/history/${encodeURIComponent(symbol)}.json`)
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null);
+
+  Promise.all([fetch("data/candidates.json").then((r) => r.json()), loadHistory])
     .then(([candidates, history]) => {
       state.candidates = candidates;
       state.history = history;
+      if (!history) {
+        document.getElementById("chartCard").hidden = true;
+        document.getElementById("chartMissing").hidden = false;
+      }
       renderAll();
     })
     .catch((err) => {
       document.getElementById("stockTitle").textContent = `${symbol}`;
       document.getElementById("warningBanner").textContent =
-        "Chart data unavailable for this symbol.";
+        "Data unavailable for this symbol.";
       console.error(err);
     });
 })();

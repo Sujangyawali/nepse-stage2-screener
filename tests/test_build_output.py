@@ -62,3 +62,14 @@ def test_build_candidates_single_ama_block(tmp_path, monkeypatch):
     short = by_symbol["SHORT"]
     assert short["data_quality"]["sufficient_history"] is False
     assert short["is_candidate"] is False
+
+
+def test_write_history_json_includes_ohlcv_for_candlesticks():
+    df = _synthetic_history(250, seed=3)
+    df["volume"] = np.arange(250, dtype=float)
+    point = write_history_json("TEST", df)["series"][-1]
+
+    assert {"open", "high", "low", "close", "volume"} <= set(point)
+    assert point["volume"] == 249.0
+    # values are rounded so the published JSON stays compact
+    assert point["ama200"] == round(point["ama200"], 4)

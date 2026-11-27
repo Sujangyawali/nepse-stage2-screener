@@ -84,5 +84,65 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); 
 
 a { color: var(--accent); }
 
-.chart-wrap { max-width: 100%; margin: 1.5rem 0; }
-canvas { max-width: 100%; }
+.chart-card {
+  position: relative;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chart-wrap {
+  width: 100%;
+  height: 480px;
+}
+
+.chart-legend {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  right: 70px;
+  z-index: 3;
+  pointer-events: none;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.lg-row { display: flex; flex-wrap: wrap; gap: 0.15rem 0.75rem; }
+.lg-row b { font-weight: 600; }
+.lg-date { color: var(--fg); font-weight: 600; }
+.lg-item { display: inline-flex; align-items: center; gap: 0.3rem; }
+.lg-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+.chart-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem 0.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.chart-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chart-btn:hover { border-color: var(--muted); }
+
+@media (max-width: 640px) {
+  .chart-wrap { height: 360px; }
+  .chart-legend { font-size: 0.7rem; right: 56px; }
+  .chart-foot span { display: none; }
+  .chart-foot { justify-content: flex-end; }
+}

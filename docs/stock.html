@@ -11,16 +11,24 @@
     <p><a href="index.html">&larr; Back to candidates</a></p>
     <h1 id="stockTitle">Loading…</h1>
     <div id="warningBanner"></div>
-    <div class="chart-wrap">
-      <canvas id="priceChart" height="120"></canvas>
+    <div class="chart-card" id="chartCard">
+      <div class="chart-legend" id="chartLegend"></div>
+      <div class="chart-wrap" id="priceChart"></div>
+      <div class="chart-foot">
+        <span>Daily candles · AMA = NepseAlpha "Moving Average Adaptive" · scroll to zoom, drag to pan</span>
+        <button type="button" class="chart-btn" id="chartReset">Reset view</button>
+      </div>
     </div>
+    <p class="status" id="chartMissing" hidden>
+      No chart for this stock — charts are published for current Stage 2 candidates only.
+    </p>
     <h2>Trend Template scorecard</h2>
     <table id="scorecardTable">
       <tbody id="scorecardBody"></tbody>
     </table>
     <p class="status"><a href="DATA_LIMITATIONS.md">Data limitations &amp; methodology notes</a></p>
   </main>
-  <script src="assets/js/vendor/chart.min.js"></script>
+  <script src="assets/js/vendor/lightweight-charts.standalone.production.js"></script>
   <script src="assets/js/stock.js"></script>
 </body>
 </html>

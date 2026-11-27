@@ -107,15 +107,19 @@ def write_history_json(symbol: str, df) -> dict:
     close = df["close"]
     ma_tail = {key: series.loc[tail_index].reset_index(drop=True) for key, series in ma_full.items()}
 
+    # OHLCV feeds the candlestick + volume chart; tolerate histories that only carry close.
+    ohlcv_cols = [c for c in ("open", "high", "low", "volume") if c in df.columns]
+
     series = []
     for i, row in enumerate(df.itertuples()):
         entry = {
             "date": row.date.strftime("%Y-%m-%d") if hasattr(row.date, "strftime") else str(row.date),
-            "close": None if pd_isna(close[i]) else float(close[i]),
+            "close": _rounded(close[i]),
         }
+        for col in ohlcv_cols:
+            entry[col] = _rounded(df[col].iloc[i])
         for period in MA_PERIODS:
-            value = ma_tail[period][i]
-            entry[f"ama{period}"] = None if pd_isna(value) else float(value)
+            entry[f"ama{period}"] = _rounded(ma_tail[period][i])
         series.append(entry)
 
     return {"symbol": symbol, "series": series}
@@ -123,6 +127,10 @@ def write_history_json(symbol: str, df) -> dict:
 
 def pd_isna(value) -> bool:
     return value != value  # NaN != NaN
+
+
+def _rounded(value, digits: int = 4):
+    return None if value is None or pd_isna(value) else round(float(value), digits)
 
 
 def _json_safe(value):
