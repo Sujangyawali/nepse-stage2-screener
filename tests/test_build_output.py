@@ -151,3 +151,46 @@ def test_market_activity_tolerates_history_without_turnover_columns():
     result = build_market_activity({"OLD": df}, [], "2026-11-27")
 
     assert result["stocks"][0]["categories"] == ["volume"]
+
+
+def test_illiquid_stock_is_not_a_candidate_even_at_8_of_8(tmp_path, monkeypatch):
+    import screener.build_output as build_output
+
+    monkeypatch.setattr(storage, "HISTORY_DIR", tmp_path)
+    monkeypatch.setattr(
+        build_output, "load_symbols_meta",
+        lambda: {"LIQ": {"name": "Liquid", "sector": "X", "is_equity": True},
+                 "THIN": {"name": "Thin", "sector": "X", "is_equity": True}},
+    )
+    monkeypatch.setattr(build_output, "known_symbols", lambda: ["LIQ", "THIN"])
+    liquid = _synthetic_history(300, seed=1)
+    liquid["volume"] = 1_000_000  # ~Rs 25 Cr/day
+    thin = _synthetic_history(300, seed=1)
+    thin["volume"] = 10  # ~Rs 2,500/day
+    storage.upsert_rows("LIQ", liquid.to_dict("records"))
+    storage.upsert_rows("THIN", thin.to_dict("records"))
+
+    candidates, _ = build_candidates()
+    by_symbol = {s["symbol"]: s for s in candidates["stocks"]}
+
+    assert by_symbol["THIN"]["data_quality"]["liquid"] is False
+    assert by_symbol["THIN"]["is_candidate"] is False
+    assert by_symbol["LIQ"]["data_quality"]["liquid"] is True
+
+
+def test_candidate_changes_reports_new_and_dropped():
+    from screener.build_output import _candidate_changes
+
+    def stock(sym, cand, score=8, liquid=True):
+        return {"symbol": sym, "is_candidate": cand, "score": score, "rank": 1,
+                "criteria": {"price_above_ma50": cand, "rs_top_30pct": True},
+                "data_quality": {"liquid": liquid}}
+
+    prev = {"stocks": [stock("STAY", True), stock("GONE", True), stock("FRESH", False, 7)]}
+    now = {"stocks": [stock("STAY", True), stock("GONE", False, 7), stock("FRESH", True)]}
+    changes = _candidate_changes(now, prev, pd.Timestamp("2026-11-26"))
+
+    assert changes["new"] == ["FRESH"]
+    assert [d["symbol"] for d in changes["dropped"]] == ["GONE"]
+    assert changes["dropped"][0]["reasons"] == ["price_above_ma50"]
+    assert {s["symbol"]: s["is_new_candidate"] for s in now["stocks"]} == {"STAY": False, "GONE": False, "FRESH": True}

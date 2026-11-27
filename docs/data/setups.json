@@ -4,7 +4,7 @@
   "counts": {
     "breakout": 0,
     "breakout_low_volume": 0,
-    "ready": 5,
+    "ready": 4,
     "forming": 0
   },
   "stocks": [
@@ -61,37 +61,6 @@
       "tightness_pct": 5.4,
       "volume_dry_up_ratio": 0.85,
       "screener_rank": 31,
-      "score": 7,
-      "is_candidate": false,
-      "missing_criteria": [
-        "above_52w_low_25pct"
-      ]
-    },
-    {
-      "symbol": "SLBBL",
-      "name": "Swarojgar Laghubitta Bittiya Sanstha Limited",
-      "sector": "Microfinance",
-      "close": 826.0,
-      "change_pct": 0.0,
-      "status": "ready",
-      "breakout_type": null,
-      "pivot": 840.0,
-      "dist_to_pivot_pct": 1.69,
-      "stop": 806.0,
-      "risk_pct": 4.0,
-      "breakout_volume_ratio": 0.33,
-      "base_length": 46,
-      "base_depth_pct": 9.4,
-      "contractions_pct": [
-        9.4,
-        4.8,
-        4.0
-      ],
-      "t_count": 3,
-      "is_vcp": true,
-      "tightness_pct": 3.5,
-      "volume_dry_up_ratio": 0.52,
-      "screener_rank": 41,
       "score": 7,
       "is_candidate": false,
       "missing_criteria": [

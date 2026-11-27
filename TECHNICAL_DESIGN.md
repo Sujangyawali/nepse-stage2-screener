@@ -266,6 +266,21 @@ Minervini's entry layer on top of the Trend Template, for stocks scoring ≥ 7
 
 All thresholds are module constants. They're rules of thumb, not backtested parameters.
 
+### 6.2c Liquidity, market direction and daily changes
+
+- **Liquidity** (`trend_template.MIN_AVG_DAILY_TURNOVER`, Rs 50 lakh): 50-session average of
+  close × volume. A stock below it keeps its score but is not a candidate (`is_candidate`
+  requires `data_quality.liquid`) and is excluded from setups.
+- **Market direction** (`screener/market.py`, `candidates.json["market"]`): an equal-weight
+  index of the universe (mean daily log return; moves > 18% excluded as unadjusted
+  corporate actions) vs. its 50-session **simple** average. Uptrend = above a rising
+  average, Correction = below a falling one, Caution otherwise. The adaptive MA is not used
+  here: % of stocks above AMA 200 swung 4% → 73% within two weeks — too fast for a regime
+  filter. Also reports new 52-week highs/lows (unadjusted bonus cliffs can inflate lows).
+- **New / Dropped** (`candidates.json["changes"]`): the full screen is re-run on histories
+  truncated to the previous session; `is_new_candidate` marks fresh entries, `dropped`
+  lists former candidates with the rules they now fail.
+
 ### 6.3 Equity Classification
 
 `EXCLUDED_SECTORS = {Corporate Debentures, Government Bonds, Mutual Fund, Preference Share,

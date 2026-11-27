@@ -32,6 +32,12 @@
     }
   } catch (e) { /* no or foreign referrer: keep the default link */ }
 
+  function fmtRupees(value) {
+    if (value === null || value === undefined) return "—";
+    if (value >= 1e7) return `Rs ${(value / 1e7).toFixed(2)} Cr`;
+    return `Rs ${(value / 1e5).toFixed(1)} L`;
+  }
+
   const params = new URLSearchParams(window.location.search);
   const symbol = params.get("symbol");
 
@@ -57,6 +63,11 @@
         '<p class="badge warn">Warning: a large single-day price jump was detected — ' +
         "possibly an unadjusted bonus/rights share issuance. Moving averages and 52-week " +
         'range may be distorted. See <a href="DATA_LIMITATIONS.md">data limitations</a>.</p>';
+    }
+    if (stock.data_quality && stock.data_quality.liquid === false) {
+      html +=
+        '<p class="badge warn">Illiquid: average daily turnover is below Rs 50 lakh, so this stock ' +
+        "is excluded from candidates and setups even if it passes the Trend Template.</p>";
     }
     if (stock.data_quality && !stock.data_quality.sufficient_history) {
       html +=
@@ -86,7 +97,8 @@
     `).join("");
     document.getElementById("scorecardBody").innerHTML = rows + `
       <tr><td><strong>Score</strong></td><td><strong>${stock.score} / 8</strong></td></tr>
-      <tr><td>Rank</td><td>#${stock.rank ?? "—"} of ${state.candidates.universe_size}</td></tr>
+      <tr><td>Rank</td><td>#${stock.rank ?? "—"} of ${state.candidates.universe_size}${stock.is_new_candidate ? ' <span class="badge new">new candidate</span>' : ""}</td></tr>
+      <tr><td>Avg daily turnover (50d)</td><td>${fmtRupees(stock.avg_daily_turnover)}${stock.data_quality && stock.data_quality.liquid === false ? ' <span class="badge warn">illiquid</span>' : ""}</td></tr>
       ${setupRows()}
       <tr><td>Close</td><td>${fmt(stock.close)}</td></tr>
       <tr><td>AMA 20</td><td>${fmt(stock.ma20)}</td></tr>

@@ -21,6 +21,7 @@
     above_52w_low_25pct: "25% above 52w low",
     within_25pct_52w_high: "within 25% of 52w high",
     rs_top_30pct: "RS top 30%",
+    illiquid: "illiquid (avg turnover < Rs 50 lakh/day)",
   };
 
   const CATEGORY_LABELS = { volume: "Vol", transactions: "Txn", turnover: "T/O" };
@@ -82,9 +83,71 @@
     });
   }
 
+  // ---- Market direction banner -----------------------------------------------------
+
+  const MARKET_TEXT = {
+    uptrend: { label: "Uptrend", advice: "Conditions favour buying breakouts from sound setups." },
+    caution: { label: "Caution", advice: "Mixed signals — be selective and keep positions small." },
+    correction: { label: "Correction", advice: "Minervini avoids new buys in a correction; most breakouts fail. Build a watchlist instead." },
+  };
+
+  function sparkline(history) {
+    const w = 180, h = 40, pad = 2;
+    const values = history.flatMap((p) => [p.index, p.ma50]);
+    const min = Math.min(...values), max = Math.max(...values);
+    const x = (i) => pad + (i / (history.length - 1)) * (w - 2 * pad);
+    const y = (v) => h - pad - ((v - min) / (max - min || 1)) * (h - 2 * pad);
+    const path = (key) => history.map((p, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(p[key]).toFixed(1)}`).join("");
+    return `<svg class="spark" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true">
+      <path d="${path("ma50")}" class="spark-ma"/><path d="${path("index")}" class="spark-idx"/></svg>`;
+  }
+
+  function renderMarket(m) {
+    const el = document.getElementById("marketBanner");
+    if (!m) return;
+    const t = MARKET_TEXT[m.status];
+    el.className = `market-banner ${m.status}`;
+    el.innerHTML = `
+      <div class="mb-main">
+        <div class="mb-status">Market: <strong>${t.label}</strong></div>
+        <div class="mb-detail">
+          Equal-weight index of the screened stocks is <strong>${fmt(Math.abs(m.pct_vs_ma50))}% ${m.pct_vs_ma50 >= 0 ? "above" : "below"}</strong>
+          its 50-day average, which is ${m.ma50_rising ? "rising" : "falling"}
+          (${m.ma50_change_pct >= 0 ? "+" : ""}${fmt(m.ma50_change_pct)}% in 10 sessions).
+          New 52-week highs / lows today: <strong>${m.new_52w_highs}</strong> / <strong>${m.new_52w_lows}</strong>.
+        </div>
+        <div class="mb-advice">${t.advice}</div>
+      </div>
+      <div class="mb-chart" title="Index (solid) vs 50-day average (dashed), last ${m.history.length} sessions">${sparkline(m.history)}</div>`;
+    el.hidden = false;
+  }
+
+  function renderChanges(changes) {
+    const el = document.getElementById("changesBar");
+    if (!changes || !changes.previous_trading_date) { el.innerHTML = ""; return; }
+    const reason = (d) => d.reasons.map((k) => CRITERIA_SHORT[k] || k).join(", ");
+    const added = changes.new.length
+      ? changes.new.map((s) => `<a href="stock.html?symbol=${encodeURIComponent(s)}" class="chg-new">${s}</a>`).join(" ")
+      : "<span class=\"muted\">none</span>";
+    const dropped = changes.dropped.length
+      ? changes.dropped.map((d) => `<a href="stock.html?symbol=${encodeURIComponent(d.symbol)}" class="chg-drop" title="Now ${d.score}/8 — fails: ${reason(d)}">${d.symbol}</a>`).join(" ")
+      : "<span class=\"muted\">none</span>";
+    el.innerHTML = `<span>Since ${changes.previous_trading_date}:</span>
+      <span>New candidates: ${added}</span><span>Dropped: ${dropped}</span>`;
+  }
+
   // ---- Stage 2 screener tab -------------------------------------------------------
 
   const screener = { data: null, sortKey: "rank", sortDir: 1 };
+
+  function stage2Cell(s) {
+    if (!s.data_quality.sufficient_history) return badge(false, true);
+    if (s.score === 8 && !s.data_quality.liquid) {
+      return `<span class="badge warn" title="Passes all 8 rules, but average daily turnover is below Rs 50 lakh">illiquid</span>`;
+    }
+    const isNew = s.is_new_candidate ? ` <span class="badge new" title="Became a candidate this session">new</span>` : "";
+    return badge(s.is_candidate, false) + isNew;
+  }
 
   screener.render = function () {
     const data = screener.data;
@@ -106,7 +169,7 @@
         <td>${fmt(s.pct_above_52w_low, 1)}%</td>
         <td>${s.rs_percentile === null ? "—" : fmt(s.rs_percentile, 0)}</td>
         <td>${s.score}/8</td>
-        <td>${badge(s.is_candidate, !s.data_quality.sufficient_history)}</td>
+        <td>${stage2Cell(s)}</td>
       </tr>
     `).join("");
     linkRowsToStockPage(body);
@@ -258,6 +321,8 @@
     .then((r) => r.json())
     .then((data) => {
       screener.data = data;
+      renderMarket(data.market);
+      renderChanges(data.changes);
       screener.render();
     })
     .catch((err) => {

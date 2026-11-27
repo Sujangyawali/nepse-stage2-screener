@@ -9,6 +9,13 @@ MIN_HISTORY_SESSIONS = 201
 # NepseAlpha). The Trend Template itself only uses 50/150/200; 20 is informational.
 MA_PERIODS = (20, 50, 150, 200)
 
+# Liquidity: Minervini avoids thinly traded stocks (hard to enter/exit without moving the
+# price). Average daily turnover is approximated as close x volume over the last 50
+# sessions, since actual turnover is only stored from 2026-11-27 onward. A stock below the
+# minimum can still score 8/8 but is not a candidate or setup.
+LIQUIDITY_SESSIONS = 50
+MIN_AVG_DAILY_TURNOVER = 5_000_000  # Rs 50 lakh
+
 # Single-session % move beyond which we suspect an unadjusted bonus/rights-share ex-date
 # gap rather than a normal trade — NEPSE's circuit-breaker bands bound ordinary daily moves
 # well under this. This is a heuristic warning flag only; prices are NOT auto-corrected.
@@ -50,12 +57,27 @@ def _empty_result(df: pd.DataFrame) -> dict:
         "pct_above_52w_low": None,
         "pct_from_52w_high": None,
         "history_days_available": len(df),
+        "avg_daily_turnover": _avg_daily_turnover(df),
         "data_quality": {
             "sufficient_history": False,
+            "liquid": _is_liquid(_avg_daily_turnover(df)),
             "possible_corporate_action_gap": _has_corporate_action_gap(df["close"]) if len(df) else False,
         },
         "criteria": {k: False for k in CRITERIA_KEYS},
     }
+
+
+def _avg_daily_turnover(df: pd.DataFrame):
+    if "volume" not in df.columns or not len(df):
+        return None
+    recent = df.tail(LIQUIDITY_SESSIONS)
+    value = (recent["close"] * recent["volume"]).mean()
+    return None if pd.isna(value) else float(value)
+
+
+def _is_liquid(avg_turnover) -> bool:
+    # Unknown (no volume data) is not penalised; only a measured shortfall is.
+    return avg_turnover is None or avg_turnover >= MIN_AVG_DAILY_TURNOVER
 
 
 def _has_corporate_action_gap(close: pd.Series) -> bool:
@@ -86,6 +108,7 @@ def evaluate(df: pd.DataFrame) -> dict:
     latest_ma200 = float(ma200.iloc[-1])
 
     week52_high, week52_low = week52_high_low(close)
+    avg_turnover = _avg_daily_turnover(df)
     trending_up = is_trending_up(ma200)
 
     pct_above_52w_low = (latest_close / week52_low - 1) * 100 if week52_low else None
@@ -116,8 +139,10 @@ def evaluate(df: pd.DataFrame) -> dict:
         "pct_above_52w_low": pct_above_52w_low,
         "pct_from_52w_high": pct_from_52w_high,
         "history_days_available": len(df),
+        "avg_daily_turnover": avg_turnover,
         "data_quality": {
             "sufficient_history": True,
+            "liquid": _is_liquid(avg_turnover),
             "possible_corporate_action_gap": _has_corporate_action_gap(close),
         },
         "criteria": criteria,

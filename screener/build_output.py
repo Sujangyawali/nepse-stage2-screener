@@ -5,6 +5,7 @@ from scraper.config import DOCS_DATA_DIR, TIMEZONE
 from scraper.sector_filter import load_symbols_meta
 from scraper.storage import known_symbols, load_history
 from screener.indicators import adaptive_ma
+from screener.market import market_direction
 from screener.setups import STATUS_ORDER, evaluate_setup
 from screener.trend_template import MA_PERIODS, evaluate
 from screener.universe import compute_rs_score, rank_universe
@@ -63,6 +64,7 @@ def _evaluate_universe(symbols: list, histories: dict, meta: dict, rs_percentile
         score = sum(1 for v in result["criteria"].values() if v)
         is_candidate = (
             result["data_quality"]["sufficient_history"]
+            and result["data_quality"]["liquid"]
             and score >= CANDIDATE_SCORE_THRESHOLD
         )
 
@@ -87,6 +89,7 @@ def _evaluate_universe(symbols: list, histories: dict, meta: dict, rs_percentile
             "score": score,
             "is_candidate": is_candidate,
             "history_days_available": result["history_days_available"],
+            "avg_daily_turnover": result["avg_daily_turnover"],
             "data_quality": result["data_quality"],
         })
 
@@ -102,11 +105,7 @@ def _evaluate_universe(symbols: list, histories: dict, meta: dict, rs_percentile
     }, as_of_dates
 
 
-def build_candidates() -> dict:
-    meta = load_symbols_meta()
-    symbols = _equity_symbols_with_history()
-    histories = {sym: load_history(sym) for sym in symbols}
-
+def _screen(symbols: list, histories: dict, meta: dict) -> tuple:
     # Relative strength is based on raw price returns (not moving averages) and is ranked
     # across the whole universe, so it has to be computed before per-symbol scoring.
     rs_scores = {
@@ -115,12 +114,62 @@ def build_candidates() -> dict:
     }
     rs_percentiles = rank_universe(rs_scores)
 
-    block, as_of_dates = _evaluate_universe(symbols, histories, meta, rs_percentiles)
-    as_of_trading_date = max(as_of_dates).strftime("%Y-%m-%d") if as_of_dates else None
+    return _evaluate_universe(symbols, histories, meta, rs_percentiles)
+
+
+def _previous_session(histories: dict, as_of) -> tuple:
+    """Histories truncated to the trading session before `as_of`, and that date."""
+    earlier = [d for df in histories.values() if len(df) for d in df["date"].iloc[-3:] if d < as_of]
+    if not earlier:
+        return None, None
+    prev = max(earlier)
+    return {sym: df[df["date"] <= prev].reset_index(drop=True) for sym, df in histories.items()}, prev
+
+
+def _candidate_changes(block: dict, prev_block: dict | None, prev_date) -> dict:
+    """Stocks that became candidates this session, and those that stopped being one."""
+    if prev_block is None:
+        for stock in block["stocks"]:
+            stock["is_new_candidate"] = False
+        return {"previous_trading_date": None, "new": [], "dropped": []}
+    was = {s["symbol"] for s in prev_block["stocks"] if s["is_candidate"]}
+    now = {s["symbol"]: s for s in block["stocks"]}
+    for stock in block["stocks"]:
+        stock["is_new_candidate"] = stock["is_candidate"] and stock["symbol"] not in was
+    dropped = []
+    for sym in sorted(was):
+        stock = now.get(sym)
+        if stock is None or stock["is_candidate"]:
+            continue
+        reasons = [k for k, v in stock["criteria"].items() if not v]
+        if not stock["data_quality"]["liquid"]:
+            reasons.append("illiquid")
+        dropped.append({"symbol": sym, "score": stock["score"], "rank": stock["rank"], "reasons": reasons})
+    return {
+        "previous_trading_date": prev_date.strftime("%Y-%m-%d"),
+        "new": [s["symbol"] for s in block["stocks"] if s["is_new_candidate"]],
+        "dropped": dropped,
+    }
+
+
+def build_candidates() -> dict:
+    meta = load_symbols_meta()
+    symbols = _equity_symbols_with_history()
+    histories = {sym: load_history(sym) for sym in symbols}
+
+    block, as_of_dates = _screen(symbols, histories, meta)
+    as_of = max(as_of_dates) if as_of_dates else None
+
+    # Re-run the same screen on the previous session's data to see what changed.
+    prev_histories, prev_date = _previous_session(histories, as_of) if as_of is not None else (None, None)
+    prev_block = _screen(symbols, prev_histories, meta)[0] if prev_histories else None
+    changes = _candidate_changes(block, prev_block, prev_date)
 
     return {
         "generated_at": datetime.now(TIMEZONE).isoformat(),
-        "as_of_trading_date": as_of_trading_date,
+        "as_of_trading_date": as_of.strftime("%Y-%m-%d") if as_of is not None else None,
+        "market": market_direction(histories),
+        "changes": changes,
         **block,
     }, histories
 
@@ -248,7 +297,8 @@ def build_setups(histories: dict, stocks: list, as_of_trading_date, min_score: i
     """VCP bases near their pivot and today's breakouts among Trend Template stocks."""
     results = []
     for stock in stocks:
-        if stock["score"] < min_score or not stock["data_quality"]["sufficient_history"]:
+        quality = stock["data_quality"]
+        if stock["score"] < min_score or not quality["sufficient_history"] or not quality["liquid"]:
             continue
         df = histories.get(stock["symbol"])
         if df is None or df.empty or df["date"].iloc[-1].strftime("%Y-%m-%d") != as_of_trading_date:

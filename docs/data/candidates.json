@@ -1,6 +1,695 @@
 {
-  "generated_at": "2026-11-27T20:38:12.952221+05:45",
+  "generated_at": "2026-11-27T21:19:12.997280+05:45",
   "as_of_trading_date": "2026-11-27",
+  "market": {
+    "status": "correction",
+    "as_of_trading_date": "2026-11-27",
+    "index": 814.36,
+    "ma50": 835.16,
+    "pct_vs_ma50": -2.49,
+    "ma50_rising": false,
+    "ma50_change_pct": -0.88,
+    "new_52w_highs": 2,
+    "new_52w_lows": 34,
+    "history": [
+      {
+        "date": "2026-05-06",
+        "index": 916.2,
+        "ma50": 951.89
+      },
+      {
+        "date": "2026-05-07",
+        "index": 917.67,
+        "ma50": 951.86
+      },
+      {
+        "date": "2026-05-08",
+        "index": 929.51,
+        "ma50": 952.15
+      },
+      {
+        "date": "2026-05-11",
+        "index": 945.25,
+        "ma50": 952.96
+      },
+      {
+        "date": "2026-05-12",
+        "index": 928.85,
+        "ma50": 953.68
+      },
+      {
+        "date": "2026-05-13",
+        "index": 925.96,
+        "ma50": 954.35
+      },
+      {
+        "date": "2026-05-14",
+        "index": 922.34,
+        "ma50": 954.74
+      },
+      {
+        "date": "2026-05-15",
+        "index": 921.73,
+        "ma50": 955.05
+      },
+      {
+        "date": "2026-05-18",
+        "index": 921.29,
+        "ma50": 955.33
+      },
+      {
+        "date": "2026-05-19",
+        "index": 920.45,
+        "ma50": 955.48
+      },
+      {
+        "date": "2026-05-20",
+        "index": 933.52,
+        "ma50": 955.56
+      },
+      {
+        "date": "2026-05-21",
+        "index": 927.55,
+        "ma50": 954.44
+      },
+      {
+        "date": "2026-05-22",
+        "index": 936.31,
+        "ma50": 953.71
+      },
+      {
+        "date": "2026-05-25",
+        "index": 946.65,
+        "ma50": 953.43
+      },
+      {
+        "date": "2026-05-26",
+        "index": 943.33,
+        "ma50": 952.93
+      },
+      {
+        "date": "2026-05-27",
+        "index": 945.05,
+        "ma50": 952.44
+      },
+      {
+        "date": "2026-06-01",
+        "index": 932.9,
+        "ma50": 951.84
+      },
+      {
+        "date": "2026-06-02",
+        "index": 940.36,
+        "ma50": 951.28
+      },
+      {
+        "date": "2026-06-03",
+        "index": 943.61,
+        "ma50": 950.42
+      },
+      {
+        "date": "2026-06-04",
+        "index": 939.67,
+        "ma50": 949.14
+      },
+      {
+        "date": "2026-06-05",
+        "index": 937.39,
+        "ma50": 947.77
+      },
+      {
+        "date": "2026-06-08",
+        "index": 930.76,
+        "ma50": 946.16
+      },
+      {
+        "date": "2026-06-09",
+        "index": 930.45,
+        "ma50": 944.76
+      },
+      {
+        "date": "2026-06-10",
+        "index": 933.36,
+        "ma50": 943.29
+      },
+      {
+        "date": "2026-06-11",
+        "index": 930.88,
+        "ma50": 942.28
+      },
+      {
+        "date": "2026-06-12",
+        "index": 929.25,
+        "ma50": 941.53
+      },
+      {
+        "date": "2026-06-15",
+        "index": 925.66,
+        "ma50": 940.55
+      },
+      {
+        "date": "2026-06-16",
+        "index": 923.7,
+        "ma50": 940.03
+      },
+      {
+        "date": "2026-06-17",
+        "index": 925.17,
+        "ma50": 939.55
+      },
+      {
+        "date": "2026-06-18",
+        "index": 923.44,
+        "ma50": 939.85
+      },
+      {
+        "date": "2026-06-19",
+        "index": 923.74,
+        "ma50": 939.48
+      },
+      {
+        "date": "2026-06-22",
+        "index": 924.43,
+        "ma50": 939.15
+      },
+      {
+        "date": "2026-06-23",
+        "index": 912.77,
+        "ma50": 938.22
+      },
+      {
+        "date": "2026-06-24",
+        "index": 908.06,
+        "ma50": 936.89
+      },
+      {
+        "date": "2026-06-25",
+        "index": 904.76,
+        "ma50": 935.59
+      },
+      {
+        "date": "2026-06-26",
+        "index": 902.37,
+        "ma50": 934.2
+      },
+      {
+        "date": "2026-06-29",
+        "index": 895.02,
+        "ma50": 932.45
+      },
+      {
+        "date": "2026-06-30",
+        "index": 885.83,
+        "ma50": 930.78
+      },
+      {
+        "date": "2026-07-01",
+        "index": 903.87,
+        "ma50": 929.47
+      },
+      {
+        "date": "2026-07-02",
+        "index": 904.39,
+        "ma50": 928.24
+      },
+      {
+        "date": "2026-07-03",
+        "index": 903.63,
+        "ma50": 927.12
+      },
+      {
+        "date": "2026-07-06",
+        "index": 892.74,
+        "ma50": 925.78
+      },
+      {
+        "date": "2026-07-07",
+        "index": 898.68,
+        "ma50": 924.73
+      },
+      {
+        "date": "2026-07-08",
+        "index": 885.38,
+        "ma50": 923.42
+      },
+      {
+        "date": "2026-07-09",
+        "index": 877.48,
+        "ma50": 921.88
+      },
+      {
+        "date": "2026-07-10",
+        "index": 876.45,
+        "ma50": 920.53
+      },
+      {
+        "date": "2026-07-13",
+        "index": 861.76,
+        "ma50": 919.11
+      },
+      {
+        "date": "2026-07-14",
+        "index": 864.01,
+        "ma50": 917.78
+      },
+      {
+        "date": "2026-07-15",
+        "index": 869.76,
+        "ma50": 916.85
+      },
+      {
+        "date": "2026-07-16",
+        "index": 871.41,
+        "ma50": 915.9
+      },
+      {
+        "date": "2026-07-17",
+        "index": 904.22,
+        "ma50": 915.66
+      },
+      {
+        "date": "2026-07-20",
+        "index": 920.32,
+        "ma50": 915.71
+      },
+      {
+        "date": "2026-07-21",
+        "index": 919.6,
+        "ma50": 915.51
+      },
+      {
+        "date": "2026-07-22",
+        "index": 915.93,
+        "ma50": 914.92
+      },
+      {
+        "date": "2026-07-23",
+        "index": 920.56,
+        "ma50": 914.76
+      },
+      {
+        "date": "2026-07-24",
+        "index": 924.07,
+        "ma50": 914.72
+      },
+      {
+        "date": "2026-07-27",
+        "index": 908.32,
+        "ma50": 914.44
+      },
+      {
+        "date": "2026-07-28",
+        "index": 906.89,
+        "ma50": 914.14
+      },
+      {
+        "date": "2026-07-30",
+        "index": 896.47,
+        "ma50": 913.65
+      },
+      {
+        "date": "2026-07-31",
+        "index": 900.91,
+        "ma50": 913.26
+      },
+      {
+        "date": "2026-08-03",
+        "index": 901.67,
+        "ma50": 912.62
+      },
+      {
+        "date": "2026-08-04",
+        "index": 896.09,
+        "ma50": 911.99
+      },
+      {
+        "date": "2026-08-05",
+        "index": 896.54,
+        "ma50": 911.2
+      },
+      {
+        "date": "2026-08-06",
+        "index": 892.27,
+        "ma50": 910.11
+      },
+      {
+        "date": "2026-08-07",
+        "index": 889.93,
+        "ma50": 909.04
+      },
+      {
+        "date": "2026-08-10",
+        "index": 887.2,
+        "ma50": 907.88
+      },
+      {
+        "date": "2026-08-11",
+        "index": 887.68,
+        "ma50": 906.98
+      },
+      {
+        "date": "2026-08-12",
+        "index": 885.33,
+        "ma50": 905.88
+      },
+      {
+        "date": "2026-08-13",
+        "index": 889.22,
+        "ma50": 904.79
+      },
+      {
+        "date": "2026-08-14",
+        "index": 886.85,
+        "ma50": 903.73
+      },
+      {
+        "date": "2026-08-17",
+        "index": 882.92,
+        "ma50": 902.64
+      },
+      {
+        "date": "2026-08-18",
+        "index": 875.11,
+        "ma50": 901.53
+      },
+      {
+        "date": "2026-08-19",
+        "index": 873.55,
+        "ma50": 900.39
+      },
+      {
+        "date": "2026-08-20",
+        "index": 873.88,
+        "ma50": 899.2
+      },
+      {
+        "date": "2026-08-21",
+        "index": 868.33,
+        "ma50": 897.95
+      },
+      {
+        "date": "2026-08-24",
+        "index": 860.46,
+        "ma50": 896.58
+      },
+      {
+        "date": "2026-08-25",
+        "index": 857.07,
+        "ma50": 895.2
+      },
+      {
+        "date": "2026-08-26",
+        "index": 841.71,
+        "ma50": 893.57
+      },
+      {
+        "date": "2026-08-27",
+        "index": 840.55,
+        "ma50": 891.87
+      },
+      {
+        "date": "2026-08-31",
+        "index": 821.74,
+        "ma50": 889.84
+      },
+      {
+        "date": "2026-09-01",
+        "index": 824.86,
+        "ma50": 887.86
+      },
+      {
+        "date": "2026-09-02",
+        "index": 830.42,
+        "ma50": 885.98
+      },
+      {
+        "date": "2026-09-03",
+        "index": 830.9,
+        "ma50": 884.34
+      },
+      {
+        "date": "2026-09-07",
+        "index": 834.72,
+        "ma50": 882.88
+      },
+      {
+        "date": "2026-09-09",
+        "index": 826.64,
+        "ma50": 881.31
+      },
+      {
+        "date": "2026-09-10",
+        "index": 822.39,
+        "ma50": 879.71
+      },
+      {
+        "date": "2026-09-11",
+        "index": 834.37,
+        "ma50": 878.5
+      },
+      {
+        "date": "2026-09-14",
+        "index": 843.61,
+        "ma50": 877.66
+      },
+      {
+        "date": "2026-09-15",
+        "index": 862.57,
+        "ma50": 876.83
+      },
+      {
+        "date": "2026-09-16",
+        "index": 852.88,
+        "ma50": 875.8
+      },
+      {
+        "date": "2026-09-17",
+        "index": 856.96,
+        "ma50": 874.87
+      },
+      {
+        "date": "2026-09-18",
+        "index": 863.52,
+        "ma50": 874.28
+      },
+      {
+        "date": "2026-09-22",
+        "index": 864.18,
+        "ma50": 873.59
+      },
+      {
+        "date": "2026-09-23",
+        "index": 851.05,
+        "ma50": 872.91
+      },
+      {
+        "date": "2026-09-24",
+        "index": 853.34,
+        "ma50": 872.42
+      },
+      {
+        "date": "2026-09-28",
+        "index": 843.52,
+        "ma50": 871.77
+      },
+      {
+        "date": "2026-09-29",
+        "index": 838.98,
+        "ma50": 871.31
+      },
+      {
+        "date": "2026-09-30",
+        "index": 837.99,
+        "ma50": 870.79
+      },
+      {
+        "date": "2026-10-01",
+        "index": 839.27,
+        "ma50": 870.18
+      },
+      {
+        "date": "2026-10-02",
+        "index": 833.29,
+        "ma50": 869.42
+      },
+      {
+        "date": "2026-10-05",
+        "index": 824.3,
+        "ma50": 867.82
+      },
+      {
+        "date": "2026-10-06",
+        "index": 826.92,
+        "ma50": 865.95
+      },
+      {
+        "date": "2026-10-07",
+        "index": 824.64,
+        "ma50": 864.05
+      },
+      {
+        "date": "2026-10-08",
+        "index": 825.52,
+        "ma50": 862.24
+      },
+      {
+        "date": "2026-10-09",
+        "index": 829.39,
+        "ma50": 860.42
+      },
+      {
+        "date": "2026-10-12",
+        "index": 828.23,
+        "ma50": 858.5
+      },
+      {
+        "date": "2026-10-13",
+        "index": 825.68,
+        "ma50": 856.85
+      },
+      {
+        "date": "2026-10-14",
+        "index": 828.88,
+        "ma50": 855.29
+      },
+      {
+        "date": "2026-10-15",
+        "index": 831.8,
+        "ma50": 854.0
+      },
+      {
+        "date": "2026-10-16",
+        "index": 835.55,
+        "ma50": 852.69
+      },
+      {
+        "date": "2026-10-26",
+        "index": 832.82,
+        "ma50": 851.31
+      },
+      {
+        "date": "2026-10-27",
+        "index": 835.21,
+        "ma50": 850.09
+      },
+      {
+        "date": "2026-10-28",
+        "index": 846.7,
+        "ma50": 849.1
+      },
+      {
+        "date": "2026-10-29",
+        "index": 852.9,
+        "ma50": 848.31
+      },
+      {
+        "date": "2026-10-30",
+        "index": 850.57,
+        "ma50": 847.52
+      },
+      {
+        "date": "2026-11-02",
+        "index": 839.53,
+        "ma50": 846.57
+      },
+      {
+        "date": "2026-11-03",
+        "index": 841.01,
+        "ma50": 845.64
+      },
+      {
+        "date": "2026-11-04",
+        "index": 838.92,
+        "ma50": 844.71
+      },
+      {
+        "date": "2026-11-05",
+        "index": 833.87,
+        "ma50": 843.6
+      },
+      {
+        "date": "2026-11-06",
+        "index": 835.5,
+        "ma50": 842.57
+      },
+      {
+        "date": "2026-11-13",
+        "index": 833.75,
+        "ma50": 841.59
+      },
+      {
+        "date": "2026-11-17",
+        "index": 829.77,
+        "ma50": 840.68
+      },
+      {
+        "date": "2026-11-18",
+        "index": 823.93,
+        "ma50": 839.69
+      },
+      {
+        "date": "2026-11-19",
+        "index": 823.53,
+        "ma50": 838.68
+      },
+      {
+        "date": "2026-11-20",
+        "index": 820.09,
+        "ma50": 837.72
+      },
+      {
+        "date": "2026-11-23",
+        "index": 817.67,
+        "ma50": 836.86
+      },
+      {
+        "date": "2026-11-24",
+        "index": 818.72,
+        "ma50": 836.1
+      },
+      {
+        "date": "2026-11-25",
+        "index": 822.85,
+        "ma50": 835.72
+      },
+      {
+        "date": "2026-11-26",
+        "index": 819.79,
+        "ma50": 835.3
+      },
+      {
+        "date": "2026-11-27",
+        "index": 814.36,
+        "ma50": 835.16
+      }
+    ]
+  },
+  "changes": {
+    "previous_trading_date": "2026-11-26",
+    "new": [],
+    "dropped": [
+      {
+        "symbol": "KBL",
+        "score": 4,
+        "rank": 81,
+        "reasons": [
+          "price_above_150_200",
+          "price_above_ma20",
+          "price_above_all_ma",
+          "price_above_ma50"
+        ]
+      },
+      {
+        "symbol": "MBJC",
+        "score": 6,
+        "rank": 42,
+        "reasons": [
+          "price_above_all_ma",
+          "price_above_ma50"
+        ]
+      }
+    ]
+  },
   "universe_size": 276,
   "candidates_count": 12,
   "stocks": [
@@ -31,11 +720,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 96934759.222,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 1
+      "rank": 1,
+      "is_new_candidate": false
     },
     {
       "symbol": "LSL",
@@ -64,11 +756,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 105041030.798,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 2
+      "rank": 2,
+      "is_new_candidate": false
     },
     {
       "symbol": "PHCL",
@@ -97,11 +792,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 90379005.844,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 3
+      "rank": 3,
+      "is_new_candidate": false
     },
     {
       "symbol": "NBL",
@@ -130,11 +828,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 53255231.778000005,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 4
+      "rank": 4,
+      "is_new_candidate": false
     },
     {
       "symbol": "SAHAS",
@@ -163,11 +864,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 62309979.578,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 5
+      "rank": 5,
+      "is_new_candidate": false
     },
     {
       "symbol": "HURJA",
@@ -196,11 +900,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 42347558.79200001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 6
+      "rank": 6,
+      "is_new_candidate": false
     },
     {
       "symbol": "SANIMA",
@@ -229,11 +936,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 61261733.83,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 7
+      "rank": 7,
+      "is_new_candidate": false
     },
     {
       "symbol": "GBIME",
@@ -262,11 +972,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 90509130.77600001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 8
+      "rank": 8,
+      "is_new_candidate": false
     },
     {
       "symbol": "MHNL",
@@ -295,11 +1008,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 6835625.856000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 9
+      "rank": 9,
+      "is_new_candidate": false
     },
     {
       "symbol": "MBL",
@@ -328,11 +1044,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 42690637.276,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 10
+      "rank": 10,
+      "is_new_candidate": false
     },
     {
       "symbol": "MANDU",
@@ -361,11 +1080,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 7192521.467999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 11
+      "rank": 11,
+      "is_new_candidate": false
     },
     {
       "symbol": "SGHC",
@@ -394,11 +1116,14 @@
       "score": 8,
       "is_candidate": true,
       "history_days_available": 395,
+      "avg_daily_turnover": 51325569.80200001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 12
+      "rank": 12,
+      "is_new_candidate": false
     },
     {
       "symbol": "PCBL",
@@ -427,11 +1152,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 50957155.99600001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 13
+      "rank": 13,
+      "is_new_candidate": false
     },
     {
       "symbol": "HDL",
@@ -460,11 +1188,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 100327696.656,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 14
+      "rank": 14,
+      "is_new_candidate": false
     },
     {
       "symbol": "USHEC",
@@ -493,11 +1224,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8010280.008,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 15
+      "rank": 15,
+      "is_new_candidate": false
     },
     {
       "symbol": "SHPC",
@@ -526,11 +1260,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 54119507.974,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 16
+      "rank": 16,
+      "is_new_candidate": false
     },
     {
       "symbol": "ADBL",
@@ -559,11 +1296,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 26214048.728,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 17
+      "rank": 17,
+      "is_new_candidate": false
     },
     {
       "symbol": "NTC",
@@ -592,11 +1332,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 13567731.974000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 18
+      "rank": 18,
+      "is_new_candidate": false
     },
     {
       "symbol": "RFPL",
@@ -625,11 +1368,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 20756091.108000003,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 19
+      "rank": 19,
+      "is_new_candidate": false
     },
     {
       "symbol": "BHCL",
@@ -658,11 +1404,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 280,
+      "avg_daily_turnover": 30301144.886000004,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 20
+      "rank": 20,
+      "is_new_candidate": false
     },
     {
       "symbol": "TRH",
@@ -691,11 +1440,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3592992.398,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 21
+      "rank": 21,
+      "is_new_candidate": false
     },
     {
       "symbol": "CZBIL",
@@ -724,11 +1476,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 30250132.43,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 22
+      "rank": 22,
+      "is_new_candidate": false
     },
     {
       "symbol": "SHL",
@@ -757,11 +1512,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 37937009.772,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 23
+      "rank": 23,
+      "is_new_candidate": false
     },
     {
       "symbol": "LBBL",
@@ -790,11 +1548,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 39723140.322000004,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 24
+      "rank": 24,
+      "is_new_candidate": false
     },
     {
       "symbol": "DORDI",
@@ -823,11 +1584,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 15331305.066,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 25
+      "rank": 25,
+      "is_new_candidate": false
     },
     {
       "symbol": "SBI",
@@ -856,11 +1620,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 27444958.35,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 26
+      "rank": 26,
+      "is_new_candidate": false
     },
     {
       "symbol": "STC",
@@ -889,11 +1656,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 9388097.222000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 27
+      "rank": 27,
+      "is_new_candidate": false
     },
     {
       "symbol": "TPC",
@@ -922,11 +1692,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 11403580.764,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 28
+      "rank": 28,
+      "is_new_candidate": false
     },
     {
       "symbol": "MHL",
@@ -955,11 +1728,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7983790.472,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 29
+      "rank": 29,
+      "is_new_candidate": false
     },
     {
       "symbol": "NMFBS",
@@ -988,11 +1764,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5685984.1898,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 30
+      "rank": 30,
+      "is_new_candidate": false
     },
     {
       "symbol": "NABIL",
@@ -1021,11 +1800,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 31015910.78,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 31
+      "rank": 31,
+      "is_new_candidate": false
     },
     {
       "symbol": "SHEL",
@@ -1054,11 +1836,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 25545066.798,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 32
+      "rank": 32,
+      "is_new_candidate": false
     },
     {
       "symbol": "PPCL",
@@ -1087,11 +1872,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6495516.826,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 33
+      "rank": 33,
+      "is_new_candidate": false
     },
     {
       "symbol": "CBBL",
@@ -1120,11 +1908,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 20446779.856,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 34
+      "rank": 34,
+      "is_new_candidate": false
     },
     {
       "symbol": "JBBL",
@@ -1153,11 +1944,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 16661914.838,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 35
+      "rank": 35,
+      "is_new_candidate": false
     },
     {
       "symbol": "HBL",
@@ -1186,11 +1980,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 17504098.32,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 36
+      "rank": 36,
+      "is_new_candidate": false
     },
     {
       "symbol": "EBL",
@@ -1219,11 +2016,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 23802565.504,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 37
+      "rank": 37,
+      "is_new_candidate": false
     },
     {
       "symbol": "KSBBL",
@@ -1252,11 +2052,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 11253147.855999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 38
+      "rank": 38,
+      "is_new_candidate": false
     },
     {
       "symbol": "SIKLES",
@@ -1285,11 +2088,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5566306.134,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 39
+      "rank": 39,
+      "is_new_candidate": false
     },
     {
       "symbol": "BARUN",
@@ -1318,11 +2124,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 12253653.253999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 40
+      "rank": 40,
+      "is_new_candidate": false
     },
     {
       "symbol": "SLBBL",
@@ -1351,11 +2160,14 @@
       "score": 7,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3505181.6739999996,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 41
+      "rank": 41,
+      "is_new_candidate": false
     },
     {
       "symbol": "MBJC",
@@ -1384,11 +2196,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 29996778.501999997,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 42
+      "rank": 42,
+      "is_new_candidate": false
     },
     {
       "symbol": "BFC",
@@ -1417,11 +2232,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 11173296.262,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 43
+      "rank": 43,
+      "is_new_candidate": false
     },
     {
       "symbol": "CIT",
@@ -1450,11 +2268,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7792067.1,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 44
+      "rank": 44,
+      "is_new_candidate": false
     },
     {
       "symbol": "SRLI",
@@ -1483,11 +2304,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 10089411.501999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 45
+      "rank": 45,
+      "is_new_candidate": false
     },
     {
       "symbol": "RBCL",
@@ -1516,11 +2340,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1503327.04,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 46
+      "rank": 46,
+      "is_new_candidate": false
     },
     {
       "symbol": "SPDL",
@@ -1549,11 +2376,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 14769706.262,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 47
+      "rank": 47,
+      "is_new_candidate": false
     },
     {
       "symbol": "SNLI",
@@ -1582,11 +2412,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7174073.673999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 48
+      "rank": 48,
+      "is_new_candidate": false
     },
     {
       "symbol": "ALICL",
@@ -1615,11 +2448,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8532672.384,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 49
+      "rank": 49,
+      "is_new_candidate": false
     },
     {
       "symbol": "KPCL",
@@ -1648,11 +2484,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3676954.6980000003,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 50
+      "rank": 50,
+      "is_new_candidate": false
     },
     {
       "symbol": "BHDC",
@@ -1681,11 +2520,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 394,
+      "avg_daily_turnover": 5523942.937999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 51
+      "rank": 51,
+      "is_new_candidate": false
     },
     {
       "symbol": "MAKAR",
@@ -1714,11 +2556,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 34835653.942,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 52
+      "rank": 52,
+      "is_new_candidate": false
     },
     {
       "symbol": "SPC",
@@ -1747,11 +2592,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3038249.702,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 53
+      "rank": 53,
+      "is_new_candidate": false
     },
     {
       "symbol": "SWMF",
@@ -1780,11 +2628,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1794161.178,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 54
+      "rank": 54,
+      "is_new_candidate": false
     },
     {
       "symbol": "SMJC",
@@ -1813,11 +2664,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8670897.044,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 55
+      "rank": 55,
+      "is_new_candidate": false
     },
     {
       "symbol": "SMFBS",
@@ -1846,11 +2700,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 943208.3460000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 56
+      "rank": 56,
+      "is_new_candidate": false
     },
     {
       "symbol": "ULHC",
@@ -1879,11 +2736,14 @@
       "score": 6,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5968895.4,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 57
+      "rank": 57,
+      "is_new_candidate": false
     },
     {
       "symbol": "SBL",
@@ -1912,11 +2772,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 76347238.024,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 58
+      "rank": 58,
+      "is_new_candidate": false
     },
     {
       "symbol": "BNT",
@@ -1945,11 +2808,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 391,
+      "avg_daily_turnover": 3003347.5279999995,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 59
+      "rank": 59,
+      "is_new_candidate": false
     },
     {
       "symbol": "NIMB",
@@ -1978,11 +2844,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 43279965.93,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 60
+      "rank": 60,
+      "is_new_candidate": false
     },
     {
       "symbol": "HPPL",
@@ -2011,11 +2880,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 47403813.463999994,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 61
+      "rank": 61,
+      "is_new_candidate": false
     },
     {
       "symbol": "MLBL",
@@ -2044,11 +2916,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 11092009.472000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 62
+      "rank": 62,
+      "is_new_candidate": false
     },
     {
       "symbol": "SJLIC",
@@ -2077,11 +2952,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6533427.158,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 63
+      "rank": 63,
+      "is_new_candidate": false
     },
     {
       "symbol": "SMH",
@@ -2110,11 +2988,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8878515.898,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 64
+      "rank": 64,
+      "is_new_candidate": false
     },
     {
       "symbol": "UPCL",
@@ -2143,11 +3024,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 16326318.435999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 65
+      "rank": 65,
+      "is_new_candidate": false
     },
     {
       "symbol": "UMRH",
@@ -2176,11 +3060,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2531711.81,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 66
+      "rank": 66,
+      "is_new_candidate": false
     },
     {
       "symbol": "PRIN",
@@ -2209,11 +3096,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5404200.214000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 67
+      "rank": 67,
+      "is_new_candidate": false
     },
     {
       "symbol": "NIL",
@@ -2242,11 +3132,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3787391.642,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 68
+      "rank": 68,
+      "is_new_candidate": false
     },
     {
       "symbol": "MHCL",
@@ -2275,11 +3168,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1813273.2300000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 69
+      "rank": 69,
+      "is_new_candidate": false
     },
     {
       "symbol": "MKHC",
@@ -2308,11 +3204,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3837205.3459999994,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 70
+      "rank": 70,
+      "is_new_candidate": false
     },
     {
       "symbol": "UNHPL",
@@ -2341,11 +3240,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7362226.982000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 71
+      "rank": 71,
+      "is_new_candidate": false
     },
     {
       "symbol": "DOLTI",
@@ -2374,11 +3276,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8105631.566000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 72
+      "rank": 72,
+      "is_new_candidate": false
     },
     {
       "symbol": "EHPL",
@@ -2407,11 +3312,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2429754.48,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 73
+      "rank": 73,
+      "is_new_candidate": false
     },
     {
       "symbol": "AHL",
@@ -2440,11 +3348,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1008453.2020000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 74
+      "rank": 74,
+      "is_new_candidate": false
     },
     {
       "symbol": "RAWA",
@@ -2473,11 +3384,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6855330.088,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 75
+      "rank": 75,
+      "is_new_candidate": false
     },
     {
       "symbol": "BGWT",
@@ -2506,11 +3420,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5964337.364,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 76
+      "rank": 76,
+      "is_new_candidate": false
     },
     {
       "symbol": "MMKJL",
@@ -2539,11 +3456,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3876301.598,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 77
+      "rank": 77,
+      "is_new_candidate": false
     },
     {
       "symbol": "BEDC",
@@ -2572,11 +3492,14 @@
       "score": 5,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4236809.57,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 78
+      "rank": 78,
+      "is_new_candidate": false
     },
     {
       "symbol": "GHL",
@@ -2605,11 +3528,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 153298403.144,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 79
+      "rank": 79,
+      "is_new_candidate": false
     },
     {
       "symbol": "NMB",
@@ -2638,11 +3564,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 40273315.996,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 80
+      "rank": 80,
+      "is_new_candidate": false
     },
     {
       "symbol": "KBL",
@@ -2671,11 +3600,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 110279289.256,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 81
+      "rank": 81,
+      "is_new_candidate": false
     },
     {
       "symbol": "BHL",
@@ -2704,11 +3636,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 46514102.106000006,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 82
+      "rank": 82,
+      "is_new_candidate": false
     },
     {
       "symbol": "DDBL",
@@ -2737,11 +3672,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6495597.96,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 83
+      "rank": 83,
+      "is_new_candidate": false
     },
     {
       "symbol": "SHINE",
@@ -2770,11 +3708,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 15934162.088,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 84
+      "rank": 84,
+      "is_new_candidate": false
     },
     {
       "symbol": "ILI",
@@ -2803,11 +3744,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4548492.616,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 85
+      "rank": 85,
+      "is_new_candidate": false
     },
     {
       "symbol": "NHDL",
@@ -2836,11 +3780,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1551143.906,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 86
+      "rank": 86,
+      "is_new_candidate": false
     },
     {
       "symbol": "PPL",
@@ -2869,11 +3816,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7288404.798,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 87
+      "rank": 87,
+      "is_new_candidate": false
     },
     {
       "symbol": "PRVU",
@@ -2902,11 +3852,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 27229941.208,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 88
+      "rank": 88,
+      "is_new_candidate": false
     },
     {
       "symbol": "HIDCL",
@@ -2935,11 +3888,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 13636610.281999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 89
+      "rank": 89,
+      "is_new_candidate": false
     },
     {
       "symbol": "PMHPL",
@@ -2968,11 +3924,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2451024.43,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 90
+      "rank": 90,
+      "is_new_candidate": false
     },
     {
       "symbol": "OHL",
@@ -3001,11 +3960,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1324582.8,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 91
+      "rank": 91,
+      "is_new_candidate": false
     },
     {
       "symbol": "SAPDBL",
@@ -3034,11 +3996,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 10443855.391999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 92
+      "rank": 92,
+      "is_new_candidate": false
     },
     {
       "symbol": "HATHY",
@@ -3067,11 +4032,14 @@
       "score": 4,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 60766504.7,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 93
+      "rank": 93,
+      "is_new_candidate": false
     },
     {
       "symbol": "RIDI",
@@ -3100,11 +4068,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 65155243.256,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 94
+      "rank": 94,
+      "is_new_candidate": false
     },
     {
       "symbol": "GVL",
@@ -3133,11 +4104,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 52614027.576000005,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 95
+      "rank": 95,
+      "is_new_candidate": false
     },
     {
       "symbol": "SSHL",
@@ -3166,11 +4140,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 27137310.798,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 96
+      "rank": 96,
+      "is_new_candidate": false
     },
     {
       "symbol": "NHPC",
@@ -3199,11 +4176,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 37863101.054,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 97
+      "rank": 97,
+      "is_new_candidate": false
     },
     {
       "symbol": "SHIVM",
@@ -3232,11 +4212,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 128625927.764,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 98
+      "rank": 98,
+      "is_new_candidate": false
     },
     {
       "symbol": "UHEWA",
@@ -3265,11 +4248,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 9666028.858,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 99
+      "rank": 99,
+      "is_new_candidate": false
     },
     {
       "symbol": "SCB",
@@ -3298,11 +4284,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 11886483.124000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 100
+      "rank": 100,
+      "is_new_candidate": false
     },
     {
       "symbol": "SONA",
@@ -3331,11 +4320,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 54303680.648,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 101
+      "rank": 101,
+      "is_new_candidate": false
     },
     {
       "symbol": "ALBSL",
@@ -3364,11 +4356,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 16413991.144000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 102
+      "rank": 102,
+      "is_new_candidate": false
     },
     {
       "symbol": "UNL",
@@ -3397,11 +4392,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 375,
+      "avg_daily_turnover": 2623070.22,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 103
+      "rank": 103,
+      "is_new_candidate": false
     },
     {
       "symbol": "GBBL",
@@ -3430,11 +4428,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 42118503.134,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 104
+      "rank": 104,
+      "is_new_candidate": false
     },
     {
       "symbol": "HHL",
@@ -3463,11 +4464,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 10385490.68,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 105
+      "rank": 105,
+      "is_new_candidate": false
     },
     {
       "symbol": "UPPER",
@@ -3496,11 +4500,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 16085609.855999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 106
+      "rank": 106,
+      "is_new_candidate": false
     },
     {
       "symbol": "GLH",
@@ -3529,11 +4536,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 20688119.646,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 107
+      "rank": 107,
+      "is_new_candidate": false
     },
     {
       "symbol": "NLICL",
@@ -3562,11 +4572,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6983183.552,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 108
+      "rank": 108,
+      "is_new_candidate": false
     },
     {
       "symbol": "AKPL",
@@ -3595,11 +4608,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 17530352.11,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 109
+      "rank": 109,
+      "is_new_candidate": false
     },
     {
       "symbol": "CFCL",
@@ -3628,11 +4644,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 60189492.366000004,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 110
+      "rank": 110,
+      "is_new_candidate": false
     },
     {
       "symbol": "RNLI",
@@ -3661,11 +4680,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8575399.778,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 111
+      "rank": 111,
+      "is_new_candidate": false
     },
     {
       "symbol": "BPCL",
@@ -3694,11 +4716,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 42252503.220000006,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 112
+      "rank": 112,
+      "is_new_candidate": false
     },
     {
       "symbol": "MDB",
@@ -3727,11 +4752,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4683335.094,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 113
+      "rank": 113,
+      "is_new_candidate": false
     },
     {
       "symbol": "ICFC",
@@ -3760,11 +4788,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5047685.49,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 114
+      "rank": 114,
+      "is_new_candidate": false
     },
     {
       "symbol": "NIFRA",
@@ -3793,11 +4824,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 16270243.396000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 115
+      "rank": 115,
+      "is_new_candidate": false
     },
     {
       "symbol": "NUBL",
@@ -3826,11 +4860,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3382038.27,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 116
+      "rank": 116,
+      "is_new_candidate": false
     },
     {
       "symbol": "MEL",
@@ -3859,11 +4896,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3291428.874000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 117
+      "rank": 117,
+      "is_new_candidate": false
     },
     {
       "symbol": "MSHL",
@@ -3892,11 +4932,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 10193960.044,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 118
+      "rank": 118,
+      "is_new_candidate": false
     },
     {
       "symbol": "MEHL",
@@ -3925,11 +4968,14 @@
       "score": 3,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 13344025.134000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 119
+      "rank": 119,
+      "is_new_candidate": false
     },
     {
       "symbol": "AKJCL",
@@ -3958,11 +5004,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 76486713.65,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 120
+      "rank": 120,
+      "is_new_candidate": false
     },
     {
       "symbol": "LEC",
@@ -3991,11 +5040,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 102075849.626,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 121
+      "rank": 121,
+      "is_new_candidate": false
     },
     {
       "symbol": "HDHPC",
@@ -4024,11 +5076,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 53055764.484,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 122
+      "rank": 122,
+      "is_new_candidate": false
     },
     {
       "symbol": "API",
@@ -4057,11 +5112,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 88418671.88800001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 123
+      "rank": 123,
+      "is_new_candidate": false
     },
     {
       "symbol": "MEN",
@@ -4090,11 +5148,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 62838534.536000006,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 124
+      "rank": 124,
+      "is_new_candidate": false
     },
     {
       "symbol": "NGPL",
@@ -4123,11 +5184,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 39894695.51,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 125
+      "rank": 125,
+      "is_new_candidate": false
     },
     {
       "symbol": "CHDC",
@@ -4156,11 +5220,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 38294552.838,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 126
+      "rank": 126,
+      "is_new_candidate": false
     },
     {
       "symbol": "LICN",
@@ -4189,11 +5256,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 10700632.114,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 127
+      "rank": 127,
+      "is_new_candidate": false
     },
     {
       "symbol": "SARBTM",
@@ -4222,11 +5292,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 11500692.207999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 128
+      "rank": 128,
+      "is_new_candidate": false
     },
     {
       "symbol": "JBLB",
@@ -4255,11 +5328,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4040805.89,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 129
+      "rank": 129,
+      "is_new_candidate": false
     },
     {
       "symbol": "SKBBL",
@@ -4288,11 +5364,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8530477.042000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 130
+      "rank": 130,
+      "is_new_candidate": false
     },
     {
       "symbol": "RHGCL",
@@ -4321,11 +5400,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5821737.102000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 131
+      "rank": 131,
+      "is_new_candidate": false
     },
     {
       "symbol": "NLIC",
@@ -4354,11 +5436,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 14046747.444,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 132
+      "rank": 132,
+      "is_new_candidate": false
     },
     {
       "symbol": "SWBBL",
@@ -4387,11 +5472,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5536659.008,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 133
+      "rank": 133,
+      "is_new_candidate": false
     },
     {
       "symbol": "ILBS",
@@ -4420,11 +5508,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3547509.972,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 134
+      "rank": 134,
+      "is_new_candidate": false
     },
     {
       "symbol": "CLI",
@@ -4453,11 +5544,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5112144.591999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 135
+      "rank": 135,
+      "is_new_candidate": false
     },
     {
       "symbol": "NMBMF",
@@ -4486,11 +5580,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 394,
+      "avg_daily_turnover": 1056625.1919999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 136
+      "rank": 136,
+      "is_new_candidate": false
     },
     {
       "symbol": "RURU",
@@ -4519,11 +5616,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3348309.3819999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 137
+      "rank": 137,
+      "is_new_candidate": false
     },
     {
       "symbol": "MFIL",
@@ -4552,11 +5652,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 21061620.342,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 138
+      "rank": 138,
+      "is_new_candidate": false
     },
     {
       "symbol": "SMHL",
@@ -4585,11 +5688,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 37161851.318,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 139
+      "rank": 139,
+      "is_new_candidate": false
     },
     {
       "symbol": "HIMSTAR",
@@ -4618,11 +5724,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 272,
+      "avg_daily_turnover": 1931622.716,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 140
+      "rank": 140,
+      "is_new_candidate": false
     },
     {
       "symbol": "BUNGAL",
@@ -4651,11 +5760,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 241,
+      "avg_daily_turnover": 5807903.863999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 141
+      "rank": 141,
+      "is_new_candidate": false
     },
     {
       "symbol": "NRIC",
@@ -4684,11 +5796,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 18412129.206,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 142
+      "rank": 142,
+      "is_new_candidate": false
     },
     {
       "symbol": "NRM",
@@ -4717,11 +5832,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2249529.99,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 143
+      "rank": 143,
+      "is_new_candidate": false
     },
     {
       "symbol": "SANVI",
@@ -4750,11 +5868,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 302,
+      "avg_daily_turnover": 5877648.0879999995,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 144
+      "rank": 144,
+      "is_new_candidate": false
     },
     {
       "symbol": "MCHL",
@@ -4783,11 +5904,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1326683.8499999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 145
+      "rank": 145,
+      "is_new_candidate": false
     },
     {
       "symbol": "KBSH",
@@ -4816,11 +5940,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7103756.897999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 146
+      "rank": 146,
+      "is_new_candidate": false
     },
     {
       "symbol": "ENL",
@@ -4849,11 +5976,14 @@
       "score": 2,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 16561423.158000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 147
+      "rank": 147,
+      "is_new_candidate": false
     },
     {
       "symbol": "UMHL",
@@ -4882,11 +6012,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 23206104.406,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 148
+      "rank": 148,
+      "is_new_candidate": false
     },
     {
       "symbol": "EDBL",
@@ -4915,11 +6048,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4297552.754000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 149
+      "rank": 149,
+      "is_new_candidate": false
     },
     {
       "symbol": "AHPC",
@@ -4948,11 +6084,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 18154255.16,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 150
+      "rank": 150,
+      "is_new_candidate": false
     },
     {
       "symbol": "HLBSL",
@@ -4981,11 +6120,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 833807.738,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 151
+      "rank": 151,
+      "is_new_candidate": false
     },
     {
       "symbol": "CHL",
@@ -5014,11 +6156,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4895257.13,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": true
       },
-      "rank": 152
+      "rank": 152,
+      "is_new_candidate": false
     },
     {
       "symbol": "SADBL",
@@ -5047,11 +6192,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 20859221.214,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 153
+      "rank": 153,
+      "is_new_candidate": false
     },
     {
       "symbol": "MPFL",
@@ -5080,11 +6228,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6029966.982000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 154
+      "rank": 154,
+      "is_new_candidate": false
     },
     {
       "symbol": "NRN",
@@ -5113,11 +6264,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 76166075.716,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 155
+      "rank": 155,
+      "is_new_candidate": false
     },
     {
       "symbol": "RSDC",
@@ -5146,11 +6300,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2315169.024,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 156
+      "rank": 156,
+      "is_new_candidate": false
     },
     {
       "symbol": "SMB",
@@ -5179,11 +6336,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1234927.5920000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 157
+      "rank": 157,
+      "is_new_candidate": false
     },
     {
       "symbol": "GILB",
@@ -5212,11 +6372,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2087760.0620000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 158
+      "rank": 158,
+      "is_new_candidate": false
     },
     {
       "symbol": "DHPL",
@@ -5245,11 +6408,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 905615.2740000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 159
+      "rank": 159,
+      "is_new_candidate": false
     },
     {
       "symbol": "MNBBL",
@@ -5278,11 +6444,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 12752635.042000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 160
+      "rank": 160,
+      "is_new_candidate": false
     },
     {
       "symbol": "GUFL",
@@ -5311,11 +6480,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3702891.2819999997,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 161
+      "rank": 161,
+      "is_new_candidate": false
     },
     {
       "symbol": "RLFL",
@@ -5344,11 +6516,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5829078.532000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 162
+      "rank": 162,
+      "is_new_candidate": false
     },
     {
       "symbol": "GFCL",
@@ -5377,11 +6552,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3143318.7320000003,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 163
+      "rank": 163,
+      "is_new_candidate": false
     },
     {
       "symbol": "SYPNL",
@@ -5410,11 +6588,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 220,
+      "avg_daily_turnover": 49596780.158,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 164
+      "rank": 164,
+      "is_new_candidate": false
     },
     {
       "symbol": "IGI",
@@ -5443,11 +6624,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3387432.5600000005,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 165
+      "rank": 165,
+      "is_new_candidate": false
     },
     {
       "symbol": "CGH",
@@ -5476,11 +6660,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 9473723.367999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 166
+      "rank": 166,
+      "is_new_candidate": false
     },
     {
       "symbol": "SJCL",
@@ -5509,11 +6696,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3668748.568000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 167
+      "rank": 167,
+      "is_new_candidate": false
     },
     {
       "symbol": "SICL",
@@ -5542,11 +6732,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4074402.0939999996,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 168
+      "rank": 168,
+      "is_new_candidate": false
     },
     {
       "symbol": "NICL",
@@ -5575,11 +6768,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4288264.21,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": true
       },
-      "rank": 169
+      "rank": 169,
+      "is_new_candidate": false
     },
     {
       "symbol": "ULBSL",
@@ -5608,11 +6804,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1978742.894,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 170
+      "rank": 170,
+      "is_new_candidate": false
     },
     {
       "symbol": "SPIL",
@@ -5641,11 +6840,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3784661.23,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 171
+      "rank": 171,
+      "is_new_candidate": false
     },
     {
       "symbol": "MERO",
@@ -5674,11 +6876,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6404246.212,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 172
+      "rank": 172,
+      "is_new_candidate": false
     },
     {
       "symbol": "SAGAR",
@@ -5707,11 +6912,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 242,
+      "avg_daily_turnover": 6668688.282000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 173
+      "rank": 173,
+      "is_new_candidate": false
     },
     {
       "symbol": "SAIL",
@@ -5740,11 +6948,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 231,
+      "avg_daily_turnover": 14868860.031999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 174
+      "rank": 174,
+      "is_new_candidate": false
     },
     {
       "symbol": "MLBBL",
@@ -5773,11 +6984,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1348574.6560000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 175
+      "rank": 175,
+      "is_new_candidate": false
     },
     {
       "symbol": "TSHL",
@@ -5806,11 +7020,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1281222.216,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 176
+      "rank": 176,
+      "is_new_candidate": false
     },
     {
       "symbol": "JHAPA",
@@ -5839,11 +7056,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 237,
+      "avg_daily_turnover": 2502937.182,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 177
+      "rank": 177,
+      "is_new_candidate": false
     },
     {
       "symbol": "SWASTIK",
@@ -5872,11 +7092,14 @@
       "score": 1,
       "is_candidate": false,
       "history_days_available": 238,
+      "avg_daily_turnover": 964828.8859999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 178
+      "rank": 178,
+      "is_new_candidate": false
     },
     {
       "symbol": "RSML",
@@ -5905,11 +7128,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 178,
+      "avg_daily_turnover": 139816824.474,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 179
+      "rank": 179,
+      "is_new_candidate": false
     },
     {
       "symbol": "KKHC",
@@ -5938,11 +7164,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 26423583.69,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 180
+      "rank": 180,
+      "is_new_candidate": false
     },
     {
       "symbol": "AVYAN",
@@ -5971,11 +7200,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1622297.11,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 181
+      "rank": 181,
+      "is_new_candidate": false
     },
     {
       "symbol": "RADHI",
@@ -6004,11 +7236,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 39858800.642,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 182
+      "rank": 182,
+      "is_new_candidate": false
     },
     {
       "symbol": "SGHL",
@@ -6037,11 +7272,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 91,
+      "avg_daily_turnover": 19751131.594,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 183
+      "rank": 183,
+      "is_new_candidate": false
     },
     {
       "symbol": "SIFC",
@@ -6070,11 +7308,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3578820.89,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 184
+      "rank": 184,
+      "is_new_candidate": false
     },
     {
       "symbol": "SPHL",
@@ -6103,11 +7344,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4256311.882,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 185
+      "rank": 185,
+      "is_new_candidate": false
     },
     {
       "symbol": "SOHL",
@@ -6136,11 +7380,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 165,
+      "avg_daily_turnover": 89652520.80600001,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 186
+      "rank": 186,
+      "is_new_candidate": false
     },
     {
       "symbol": "MSLB",
@@ -6169,11 +7416,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1139595.072,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 187
+      "rank": 187,
+      "is_new_candidate": false
     },
     {
       "symbol": "KMCDB",
@@ -6202,11 +7452,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2767880.2979999995,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 188
+      "rank": 188,
+      "is_new_candidate": false
     },
     {
       "symbol": "JOSHI",
@@ -6235,11 +7488,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2759480.52,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": true
       },
-      "rank": 189
+      "rank": 189,
+      "is_new_candidate": false
     },
     {
       "symbol": "CREST",
@@ -6268,11 +7524,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 368,
+      "avg_daily_turnover": 5739057.346000002,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 190
+      "rank": 190,
+      "is_new_candidate": false
     },
     {
       "symbol": "NICLBSL",
@@ -6301,11 +7560,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2352588.404,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 191
+      "rank": 191,
+      "is_new_candidate": false
     },
     {
       "symbol": "NYADI",
@@ -6334,11 +7596,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1569509.638,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 192
+      "rank": 192,
+      "is_new_candidate": false
     },
     {
       "symbol": "HLI",
@@ -6367,11 +7632,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 9097189.07,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 193
+      "rank": 193,
+      "is_new_candidate": false
     },
     {
       "symbol": "GCIL",
@@ -6400,11 +7668,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 40512179.73,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 194
+      "rank": 194,
+      "is_new_candidate": false
     },
     {
       "symbol": "SMPDA",
@@ -6433,11 +7704,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 803224.468,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 195
+      "rank": 195,
+      "is_new_candidate": false
     },
     {
       "symbol": "LLBS",
@@ -6466,11 +7740,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1060037.918,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 196
+      "rank": 196,
+      "is_new_candidate": false
     },
     {
       "symbol": "GMFIL",
@@ -6499,11 +7776,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2580844.548,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 197
+      "rank": 197,
+      "is_new_candidate": false
     },
     {
       "symbol": "FMDBL",
@@ -6532,11 +7812,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7638667.274000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 198
+      "rank": 198,
+      "is_new_candidate": false
     },
     {
       "symbol": "BBC",
@@ -6565,11 +7848,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1408848.6919999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 199
+      "rank": 199,
+      "is_new_candidate": false
     },
     {
       "symbol": "MKHL",
@@ -6598,11 +7884,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1422773.1719999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 200
+      "rank": 200,
+      "is_new_candidate": false
     },
     {
       "symbol": "VLBS",
@@ -6631,11 +7920,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1701034.4119999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 201
+      "rank": 201,
+      "is_new_candidate": false
     },
     {
       "symbol": "GRDBL",
@@ -6664,11 +7956,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 6513896.776000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 202
+      "rank": 202,
+      "is_new_candidate": false
     },
     {
       "symbol": "DHEL",
@@ -6697,11 +7992,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 243,
+      "avg_daily_turnover": 6233231.108000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 203
+      "rank": 203,
+      "is_new_candidate": false
     },
     {
       "symbol": "SALICO",
@@ -6730,11 +8028,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3443522.6939999997,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 204
+      "rank": 204,
+      "is_new_candidate": false
     },
     {
       "symbol": "GBLBS",
@@ -6763,11 +8064,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2148260.124,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 205
+      "rank": 205,
+      "is_new_candidate": false
     },
     {
       "symbol": "NESDO",
@@ -6796,11 +8100,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1024127.19,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 206
+      "rank": 206,
+      "is_new_candidate": false
     },
     {
       "symbol": "NMLBBL",
@@ -6829,11 +8136,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2762314.9459999995,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 207
+      "rank": 207,
+      "is_new_candidate": false
     },
     {
       "symbol": "NLG",
@@ -6862,11 +8172,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3907616.7040000004,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 208
+      "rank": 208,
+      "is_new_candidate": false
     },
     {
       "symbol": "SGIC",
@@ -6895,11 +8208,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3779228.2020000005,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 209
+      "rank": 209,
+      "is_new_candidate": false
     },
     {
       "symbol": "PURE",
@@ -6928,11 +8244,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 338,
+      "avg_daily_turnover": 3858376.236,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 210
+      "rank": 210,
+      "is_new_candidate": false
     },
     {
       "symbol": "PROFL",
@@ -6961,11 +8280,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2037640.9219999998,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 211
+      "rank": 211,
+      "is_new_candidate": false
     },
     {
       "symbol": "UAIL",
@@ -6994,11 +8316,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 4680196.128,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 212
+      "rank": 212,
+      "is_new_candidate": false
     },
     {
       "symbol": "DLBS",
@@ -7027,11 +8352,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 394,
+      "avg_daily_turnover": 1090472.856,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 213
+      "rank": 213,
+      "is_new_candidate": false
     },
     {
       "symbol": "NICA",
@@ -7060,11 +8388,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 54951643.892,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 214
+      "rank": 214,
+      "is_new_candidate": false
     },
     {
       "symbol": "JSLBB",
@@ -7093,11 +8424,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 391,
+      "avg_daily_turnover": 330068.22799999994,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 215
+      "rank": 215,
+      "is_new_candidate": false
     },
     {
       "symbol": "NADEP",
@@ -7126,11 +8460,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 935830.4839999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 216
+      "rank": 216,
+      "is_new_candidate": false
     },
     {
       "symbol": "ACLBSL",
@@ -7159,11 +8496,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 874178.122,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 217
+      "rank": 217,
+      "is_new_candidate": false
     },
     {
       "symbol": "CYCL",
@@ -7192,11 +8532,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 14347650.734000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 218
+      "rank": 218,
+      "is_new_candidate": false
     },
     {
       "symbol": "USHL",
@@ -7225,11 +8568,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 746337.1740000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 219
+      "rank": 219,
+      "is_new_candidate": false
     },
     {
       "symbol": "PMLI",
@@ -7258,11 +8604,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7110769.481999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 220
+      "rank": 220,
+      "is_new_candidate": false
     },
     {
       "symbol": "FOWAD",
@@ -7291,11 +8640,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2653738.57,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 221
+      "rank": 221,
+      "is_new_candidate": false
     },
     {
       "symbol": "KAHL",
@@ -7324,11 +8676,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 91,
+      "avg_daily_turnover": 9281415.243999999,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 222
+      "rank": 222,
+      "is_new_candidate": false
     },
     {
       "symbol": "SNORL",
@@ -7357,11 +8712,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 95,
+      "avg_daily_turnover": 18731700.408,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 223
+      "rank": 223,
+      "is_new_candidate": false
     },
     {
       "symbol": "HEI",
@@ -7390,11 +8748,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8175880.882,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 224
+      "rank": 224,
+      "is_new_candidate": false
     },
     {
       "symbol": "NFS",
@@ -7423,11 +8784,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2849383.81,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 225
+      "rank": 225,
+      "is_new_candidate": false
     },
     {
       "symbol": "UNLB",
@@ -7456,11 +8820,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 445523.71599999996,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 226
+      "rank": 226,
+      "is_new_candidate": false
     },
     {
       "symbol": "MABEL",
@@ -7489,11 +8856,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 245,
+      "avg_daily_turnover": 2931833.15,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 227
+      "rank": 227,
+      "is_new_candidate": false
     },
     {
       "symbol": "ANLB",
@@ -7522,11 +8892,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2447086.95,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 228
+      "rank": 228,
+      "is_new_candidate": false
     },
     {
       "symbol": "BHPL",
@@ -7555,11 +8928,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2315860.634,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 229
+      "rank": 229,
+      "is_new_candidate": false
     },
     {
       "symbol": "SHLB",
@@ -7588,11 +8964,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 394,
+      "avg_daily_turnover": 261103.55,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 230
+      "rank": 230,
+      "is_new_candidate": false
     },
     {
       "symbol": "SMATA",
@@ -7621,11 +9000,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1426308.3,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 231
+      "rank": 231,
+      "is_new_candidate": false
     },
     {
       "symbol": "MATRI",
@@ -7654,11 +9036,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 464950.434,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 232
+      "rank": 232,
+      "is_new_candidate": false
     },
     {
       "symbol": "TPKHL",
@@ -7687,11 +9072,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 99,
+      "avg_daily_turnover": 9366928.8,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 233
+      "rank": 233,
+      "is_new_candidate": false
     },
     {
       "symbol": "BNHC",
@@ -7720,11 +9108,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3928826.992,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": true
       },
-      "rank": 234
+      "rank": 234,
+      "is_new_candidate": false
     },
     {
       "symbol": "SABBL",
@@ -7753,11 +9144,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 178,
+      "avg_daily_turnover": 5679899.042,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 235
+      "rank": 235,
+      "is_new_candidate": false
     },
     {
       "symbol": "PCIL",
@@ -7786,11 +9180,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 146,
+      "avg_daily_turnover": 21160067.17,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 236
+      "rank": 236,
+      "is_new_candidate": false
     },
     {
       "symbol": "SPL",
@@ -7819,11 +9216,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1763765.7660000003,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 237
+      "rank": 237,
+      "is_new_candidate": false
     },
     {
       "symbol": "MLBS",
@@ -7852,11 +9252,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 393,
+      "avg_daily_turnover": 363988.2,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 238
+      "rank": 238,
+      "is_new_candidate": false
     },
     {
       "symbol": "GMFBS",
@@ -7885,11 +9288,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 511281.0820000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 239
+      "rank": 239,
+      "is_new_candidate": false
     },
     {
       "symbol": "IHL",
@@ -7918,11 +9324,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2177395.4420000003,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 240
+      "rank": 240,
+      "is_new_candidate": false
     },
     {
       "symbol": "SOPL",
@@ -7951,11 +9360,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 109,
+      "avg_daily_turnover": 15278889.374000002,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 241
+      "rank": 241,
+      "is_new_candidate": false
     },
     {
       "symbol": "CITY",
@@ -7984,11 +9396,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 25025111.661999997,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 242
+      "rank": 242,
+      "is_new_candidate": false
     },
     {
       "symbol": "APHL",
@@ -8017,11 +9432,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 107,
+      "avg_daily_turnover": 3737497.5180000006,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 243
+      "rank": 243,
+      "is_new_candidate": false
     },
     {
       "symbol": "GLBSL",
@@ -8050,11 +9468,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 797823.4360000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 244
+      "rank": 244,
+      "is_new_candidate": false
     },
     {
       "symbol": "TTL",
@@ -8083,11 +9504,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 303,
+      "avg_daily_turnover": 4874231.358,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 245
+      "rank": 245,
+      "is_new_candidate": false
     },
     {
       "symbol": "HRL",
@@ -8116,11 +9540,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 36734221.45,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 246
+      "rank": 246,
+      "is_new_candidate": false
     },
     {
       "symbol": "KHPL",
@@ -8149,11 +9576,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 116,
+      "avg_daily_turnover": 3418954.6979999994,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 247
+      "rank": 247,
+      "is_new_candidate": false
     },
     {
       "symbol": "CHCL",
@@ -8182,11 +9612,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 20754569.374,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 248
+      "rank": 248,
+      "is_new_candidate": false
     },
     {
       "symbol": "YMHL",
@@ -8215,11 +9648,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 99,
+      "avg_daily_turnover": 9202174.061999999,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 249
+      "rank": 249,
+      "is_new_candidate": false
     },
     {
       "symbol": "NMIC",
@@ -8248,11 +9684,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 370,
+      "avg_daily_turnover": 2123600.192,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 250
+      "rank": 250,
+      "is_new_candidate": false
     },
     {
       "symbol": "SKHL",
@@ -8281,11 +9720,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 158,
+      "avg_daily_turnover": 5696195.396000001,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 251
+      "rank": 251,
+      "is_new_candidate": false
     },
     {
       "symbol": "SLBSL",
@@ -8314,11 +9756,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 754431.1740000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 252
+      "rank": 252,
+      "is_new_candidate": false
     },
     {
       "symbol": "BANDIPUR",
@@ -8347,11 +9792,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 240,
+      "avg_daily_turnover": 10380677.75,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 253
+      "rank": 253,
+      "is_new_candidate": false
     },
     {
       "symbol": "NABBC",
@@ -8380,11 +9828,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 11791881.342,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 254
+      "rank": 254,
+      "is_new_candidate": false
     },
     {
       "symbol": "VLUCL",
@@ -8413,11 +9864,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 7493856.4,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 255
+      "rank": 255,
+      "is_new_candidate": false
     },
     {
       "symbol": "BJHL",
@@ -8446,11 +9900,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 161,
+      "avg_daily_turnover": 4081420.49,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 256
+      "rank": 256,
+      "is_new_candidate": false
     },
     {
       "symbol": "SKHEL",
@@ -8479,11 +9936,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 156,
+      "avg_daily_turnover": 2068660.0680000002,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 257
+      "rank": 257,
+      "is_new_candidate": false
     },
     {
       "symbol": "WNLB",
@@ -8512,11 +9972,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 348,
+      "avg_daily_turnover": 573715.4920000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 258
+      "rank": 258,
+      "is_new_candidate": false
     },
     {
       "symbol": "USLB",
@@ -8545,11 +10008,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2459767.312,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 259
+      "rank": 259,
+      "is_new_candidate": false
     },
     {
       "symbol": "JFL",
@@ -8578,11 +10044,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 3738659.7520000003,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 260
+      "rank": 260,
+      "is_new_candidate": false
     },
     {
       "symbol": "SIPD",
@@ -8611,11 +10080,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 146,
+      "avg_daily_turnover": 7858267.998,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 261
+      "rank": 261,
+      "is_new_candidate": false
     },
     {
       "symbol": "CKHL",
@@ -8644,11 +10116,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 5032769.084,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 262
+      "rank": 262,
+      "is_new_candidate": false
     },
     {
       "symbol": "OMPL",
@@ -8677,11 +10152,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 354,
+      "avg_daily_turnover": 2790653.3159999996,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 263
+      "rank": 263,
+      "is_new_candidate": false
     },
     {
       "symbol": "GMLI",
@@ -8710,11 +10188,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1017941.8979999999,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 264
+      "rank": 264,
+      "is_new_candidate": false
     },
     {
       "symbol": "RHPL",
@@ -8743,11 +10224,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 14508060.88,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 265
+      "rank": 265,
+      "is_new_candidate": false
     },
     {
       "symbol": "RLEL",
@@ -8776,11 +10260,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 156,
+      "avg_daily_turnover": 7288196.026000001,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 266
+      "rank": 266,
+      "is_new_candidate": false
     },
     {
       "symbol": "ECL",
@@ -8809,11 +10296,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 80,
+      "avg_daily_turnover": 19307394.75,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": true
       },
-      "rank": 267
+      "rank": 267,
+      "is_new_candidate": false
     },
     {
       "symbol": "HFIN",
@@ -8842,11 +10332,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 166,
+      "avg_daily_turnover": 10194854.778,
       "data_quality": {
         "sufficient_history": false,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 268
+      "rank": 268,
+      "is_new_candidate": false
     },
     {
       "symbol": "TVCL",
@@ -8875,11 +10368,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 2567578.126,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 269
+      "rank": 269,
+      "is_new_candidate": false
     },
     {
       "symbol": "NWCL",
@@ -8908,11 +10404,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1465122.606,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 270
+      "rank": 270,
+      "is_new_candidate": false
     },
     {
       "symbol": "MKJC",
@@ -8941,11 +10440,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 9616704.204,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 271
+      "rank": 271,
+      "is_new_candidate": false
     },
     {
       "symbol": "KDL",
@@ -8974,11 +10476,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 17013836.66,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 272
+      "rank": 272,
+      "is_new_candidate": false
     },
     {
       "symbol": "MLBSL",
@@ -9007,11 +10512,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 966551.1880000001,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 273
+      "rank": 273,
+      "is_new_candidate": false
     },
     {
       "symbol": "SINDU",
@@ -9040,11 +10548,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 8512512.676,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 274
+      "rank": 274,
+      "is_new_candidate": false
     },
     {
       "symbol": "MKCL",
@@ -9073,11 +10584,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 1879910.696,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": false,
         "possible_corporate_action_gap": false
       },
-      "rank": 275
+      "rank": 275,
+      "is_new_candidate": false
     },
     {
       "symbol": "CORBL",
@@ -9106,11 +10620,14 @@
       "score": 0,
       "is_candidate": false,
       "history_days_available": 395,
+      "avg_daily_turnover": 9322701.868,
       "data_quality": {
         "sufficient_history": true,
+        "liquid": true,
         "possible_corporate_action_gap": false
       },
-      "rank": 276
+      "rank": 276,
+      "is_new_candidate": false
     }
   ]
 }
