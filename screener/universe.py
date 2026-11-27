@@ -1,6 +1,6 @@
 import pandas as pd
 
-# Trailing-return windows approximating 3/6/9/12 months at NEPSE's ~4-5 day trading week
+# Trailing-return windows approximating 3/6/9/12 months of NEPSE trading sessions
 # (IBD/Minervini-style blended relative strength). Weighted toward the most recent window,
 # consistent with the standard RS-rating formula.
 RS_WINDOWS = [65, 130, 195, 260]

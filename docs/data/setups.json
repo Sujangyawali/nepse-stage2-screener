@@ -1,0 +1,164 @@
+{
+  "as_of_trading_date": "2026-11-27",
+  "min_score": 7,
+  "counts": {
+    "breakout": 0,
+    "breakout_low_volume": 0,
+    "ready": 5,
+    "forming": 0
+  },
+  "stocks": [
+    {
+      "symbol": "MBL",
+      "name": "Machhapuchchhre Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 272.9,
+      "change_pct": -0.15,
+      "status": "ready",
+      "breakout_type": null,
+      "pivot": 281.7,
+      "dist_to_pivot_pct": 3.22,
+      "stop": 270.1,
+      "risk_pct": 4.1,
+      "breakout_volume_ratio": 0.42,
+      "base_length": 16,
+      "base_depth_pct": 10.4,
+      "contractions_pct": [
+        8.1,
+        7.0,
+        4.1
+      ],
+      "t_count": 3,
+      "is_vcp": true,
+      "tightness_pct": 7.8,
+      "volume_dry_up_ratio": 0.89,
+      "screener_rank": 10,
+      "score": 8,
+      "is_candidate": true,
+      "missing_criteria": []
+    },
+    {
+      "symbol": "NABIL",
+      "name": "Nabil Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 557.0,
+      "change_pct": -0.36,
+      "status": "ready",
+      "breakout_type": null,
+      "pivot": 565.0,
+      "dist_to_pivot_pct": 1.44,
+      "stop": 535.0,
+      "risk_pct": 5.3,
+      "breakout_volume_ratio": 0.85,
+      "base_length": 41,
+      "base_depth_pct": 10.8,
+      "contractions_pct": [
+        9.6,
+        5.3
+      ],
+      "t_count": 2,
+      "is_vcp": true,
+      "tightness_pct": 5.4,
+      "volume_dry_up_ratio": 0.85,
+      "screener_rank": 31,
+      "score": 7,
+      "is_candidate": false,
+      "missing_criteria": [
+        "above_52w_low_25pct"
+      ]
+    },
+    {
+      "symbol": "SLBBL",
+      "name": "Swarojgar Laghubitta Bittiya Sanstha Limited",
+      "sector": "Microfinance",
+      "close": 826.0,
+      "change_pct": 0.0,
+      "status": "ready",
+      "breakout_type": null,
+      "pivot": 840.0,
+      "dist_to_pivot_pct": 1.69,
+      "stop": 806.0,
+      "risk_pct": 4.0,
+      "breakout_volume_ratio": 0.33,
+      "base_length": 46,
+      "base_depth_pct": 9.4,
+      "contractions_pct": [
+        9.4,
+        4.8,
+        4.0
+      ],
+      "t_count": 3,
+      "is_vcp": true,
+      "tightness_pct": 3.5,
+      "volume_dry_up_ratio": 0.52,
+      "screener_rank": 41,
+      "score": 7,
+      "is_candidate": false,
+      "missing_criteria": [
+        "above_52w_low_25pct"
+      ]
+    },
+    {
+      "symbol": "EBL",
+      "name": "Everest Bank Limited",
+      "sector": "Commercial Bank",
+      "close": 718.0,
+      "change_pct": -0.08,
+      "status": "ready",
+      "breakout_type": null,
+      "pivot": 741.0,
+      "dist_to_pivot_pct": 3.2,
+      "stop": 700.3,
+      "risk_pct": 5.5,
+      "breakout_volume_ratio": 0.3,
+      "base_length": 41,
+      "base_depth_pct": 9.8,
+      "contractions_pct": [
+        9.8,
+        5.5
+      ],
+      "t_count": 2,
+      "is_vcp": true,
+      "tightness_pct": 4.6,
+      "volume_dry_up_ratio": 0.52,
+      "screener_rank": 37,
+      "score": 7,
+      "is_candidate": false,
+      "missing_criteria": [
+        "above_52w_low_25pct"
+      ]
+    },
+    {
+      "symbol": "KSBBL",
+      "name": "Kamana Sewa Bikas Bank Limited",
+      "sector": "Development Bank",
+      "close": 476.5,
+      "change_pct": -0.73,
+      "status": "ready",
+      "breakout_type": null,
+      "pivot": 500.0,
+      "dist_to_pivot_pct": 4.93,
+      "stop": 476.4,
+      "risk_pct": 4.7,
+      "breakout_volume_ratio": 1.62,
+      "base_length": 106,
+      "base_depth_pct": 18.5,
+      "contractions_pct": [
+        10.6,
+        4.3,
+        4.9,
+        4.7
+      ],
+      "t_count": 4,
+      "is_vcp": true,
+      "tightness_pct": 6.9,
+      "volume_dry_up_ratio": 0.63,
+      "screener_rank": 38,
+      "score": 7,
+      "is_candidate": false,
+      "missing_criteria": [
+        "above_52w_low_25pct"
+      ]
+    }
+  ]
+}

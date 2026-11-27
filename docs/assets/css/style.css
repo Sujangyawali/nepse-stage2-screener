@@ -29,7 +29,7 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
@@ -122,6 +122,14 @@ td.down { color: #ef5350; }
 td.chips { text-align: left; }
 
 .candidate { color: var(--accent); font-weight: 600; }
+
+.badge.ready { background: #42a5f526; color: #42a5f5; }
+.badge.neutral { background: color-mix(in srgb, var(--muted) 18%, transparent); color: var(--muted); }
+.good { color: var(--accent); }
+.muted { color: var(--muted); }
+td.footprint { font-variant-numeric: tabular-nums; }
+tr.empty td { text-align: center; color: var(--muted); padding: 1.5rem; }
+tr.empty:hover { background: none; cursor: default; }
 
 .chip {
   display: inline-block;

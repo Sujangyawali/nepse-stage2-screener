@@ -5,6 +5,7 @@ from scraper.config import DOCS_DATA_DIR, TIMEZONE
 from scraper.sector_filter import load_symbols_meta
 from scraper.storage import known_symbols, load_history
 from screener.indicators import adaptive_ma
+from screener.setups import STATUS_ORDER, evaluate_setup
 from screener.trend_template import MA_PERIODS, evaluate
 from screener.universe import compute_rs_score, rank_universe
 
@@ -15,6 +16,10 @@ HISTORY_CHART_SESSIONS = 300
 # Charts are published for every candidate plus the top N rows of the dashboard's default
 # ordering (score, then RS percentile), so near-misses can be inspected too.
 CHART_TOP_N = 20
+
+# Setups (VCP / breakouts) are only looked for in stocks in, or one rule short of, a
+# Stage 2 uptrend — Minervini only buys these patterns in Trend Template stocks.
+SETUP_MIN_SCORE = 7
 
 ACTIVITY_TOP_N = 10
 # (field in the history CSV, label used in market_activity.json "categories")
@@ -239,6 +244,45 @@ def build_market_activity(histories: dict, stocks: list, as_of_trading_date, top
     }
 
 
+def build_setups(histories: dict, stocks: list, as_of_trading_date, min_score: int = SETUP_MIN_SCORE) -> dict:
+    """VCP bases near their pivot and today's breakouts among Trend Template stocks."""
+    results = []
+    for stock in stocks:
+        if stock["score"] < min_score or not stock["data_quality"]["sufficient_history"]:
+            continue
+        df = histories.get(stock["symbol"])
+        if df is None or df.empty or df["date"].iloc[-1].strftime("%Y-%m-%d") != as_of_trading_date:
+            continue  # only stocks that traded in the latest session
+        setup = evaluate_setup(df)
+        if setup is None:
+            continue
+        prev_close = df["close"].iloc[-2]
+        results.append({
+            "symbol": stock["symbol"],
+            "name": stock["name"],
+            "sector": stock["sector"],
+            "close": stock["close"],
+            "change_pct": _rounded((stock["close"] / prev_close - 1) * 100, 2) if prev_close else None,
+            **setup,
+            "screener_rank": stock.get("rank"),
+            "score": stock["score"],
+            "is_candidate": stock["is_candidate"],
+            "missing_criteria": [k for k, v in stock["criteria"].items() if not v],
+        })
+    results.sort(key=lambda r: (
+        STATUS_ORDER.index(r["status"]),
+        not r["is_candidate"],
+        abs(r["dist_to_pivot_pct"]),
+        r["screener_rank"] or 10**6,
+    ))
+    return {
+        "as_of_trading_date": as_of_trading_date,
+        "min_score": min_score,
+        "counts": {status: sum(1 for r in results if r["status"] == status) for status in STATUS_ORDER},
+        "stocks": results,
+    }
+
+
 def run(write_history_for_all: bool = False) -> dict:
     candidates, histories = build_candidates()
 
@@ -259,11 +303,15 @@ def run(write_history_for_all: bool = False) -> dict:
     activity = build_market_activity(histories, candidates["stocks"], candidates["as_of_trading_date"])
     (DOCS_DATA_DIR / "market_activity.json").write_text(json.dumps(_json_safe(activity), indent=2))
 
+    setups = build_setups(histories, candidates["stocks"], candidates["as_of_trading_date"])
+    (DOCS_DATA_DIR / "setups.json").write_text(json.dumps(_json_safe(setups), indent=2))
+
     if write_history_for_all:
         symbols_to_chart = set(histories.keys())
     else:
         symbols_to_chart = symbols_to_publish_charts(candidates["stocks"])
         symbols_to_chart |= {s["symbol"] for s in activity["stocks"]}
+        symbols_to_chart |= {s["symbol"] for s in setups["stocks"]}
         # Drop charts for symbols that no longer qualify, so the site never serves
         # a stale history file computed by an older run (or an older MA formula).
         for stale in history_dir.glob("*.json"):

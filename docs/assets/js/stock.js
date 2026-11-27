@@ -40,7 +40,14 @@
     return;
   }
 
-  const state = { candidates: null, history: null, chart: null, bars: [], pointByDate: new Map() };
+  const state = { candidates: null, history: null, setup: null, chart: null, bars: [], pointByDate: new Map() };
+
+  const SETUP_LABELS = {
+    breakout: "Breakout (volume confirmed)",
+    breakout_low_volume: "Breakout (low volume)",
+    ready: "VCP ready — within 5% of pivot",
+    forming: "VCP forming",
+  };
 
   function renderWarnings(stock) {
     const banner = document.getElementById("warningBanner");
@@ -59,6 +66,16 @@
     banner.innerHTML = html;
   }
 
+  function setupRows() {
+    const s = state.setup;
+    if (!s) return "";
+    const footprint = s.contractions_pct && s.contractions_pct.length
+      ? ` · ${s.t_count}T ${s.contractions_pct.map((d) => fmt(d, 1)).join(" → ")}%` : "";
+    return `
+      <tr><td><strong>Setup</strong></td><td><strong>${SETUP_LABELS[s.status] || s.status}</strong>${footprint}</td></tr>
+      <tr><td>Pivot / stop</td><td>${fmt(s.pivot)} / ${fmt(s.stop)} (risk ${fmt(s.risk_pct, 1)}%)</td></tr>`;
+  }
+
   function renderScorecard(stock) {
     const rows = Object.entries(CRITERIA_LABELS).map(([key, label]) => `
       <tr>
@@ -70,6 +87,7 @@
     document.getElementById("scorecardBody").innerHTML = rows + `
       <tr><td><strong>Score</strong></td><td><strong>${stock.score} / 8</strong></td></tr>
       <tr><td>Rank</td><td>#${stock.rank ?? "—"} of ${state.candidates.universe_size}</td></tr>
+      ${setupRows()}
       <tr><td>Close</td><td>${fmt(stock.close)}</td></tr>
       <tr><td>AMA 20</td><td>${fmt(stock.ma20)}</td></tr>
       <tr><td>AMA 50</td><td>${fmt(stock.ma50)}</td></tr>
@@ -172,6 +190,10 @@
     });
     candles.priceScale().applyOptions({ scaleMargins: { top: 0.14, bottom: 0.24 } });
     candles.setData(bars.map(({ time, open, high, low, close }) => ({ time, open, high, low, close })));
+    if (state.setup) {
+      candles.createPriceLine({ price: state.setup.pivot, color: "#42a5f5", lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: "Pivot" });
+      candles.createPriceLine({ price: state.setup.stop, color: DOWN, lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: "Stop" });
+    }
 
     if (bars.some((b) => b.volume !== null)) {
       const volume = chart.addHistogramSeries({
@@ -238,10 +260,15 @@
     .then((r) => (r.ok ? r.json() : null))
     .catch(() => null);
 
-  Promise.all([fetch("data/candidates.json").then((r) => r.json()), loadHistory])
-    .then(([candidates, history]) => {
+  const loadSetups = fetch("data/setups.json")
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null);
+
+  Promise.all([fetch("data/candidates.json").then((r) => r.json()), loadHistory, loadSetups])
+    .then(([candidates, history, setups]) => {
       state.candidates = candidates;
       state.history = history;
+      state.setup = setups ? setups.stocks.find((s) => s.symbol === symbol) || null : null;
       if (!history) {
         document.getElementById("chartCard").hidden = true;
         document.getElementById("chartMissing").hidden = false;

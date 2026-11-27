@@ -37,7 +37,7 @@ flowchart TB
     end
 
     subgraph CI["GitHub Actions (scheduled + manual)"]
-        B1["daily_scrape.yml\ncron: 30 10 * * 0-4 (UTC)\n= 16:15 NPT, Sun-Thu"]
+        B1["daily_scrape.yml\ncron: 30 10 * * 1-5 (UTC)\n= 16:15 NPT, Mon-Fri"]
         B2["backfill.yml\nworkflow_dispatch only"]
         C["scripts/run_daily.py\n(orchestrator)"]
         D["scraper/*\n(fetch, parse, normalize, store)"]
@@ -248,6 +248,24 @@ Quirk worth knowing: during an IPO-style run of identical daily circuit moves, s
 alpha explodes and the line spikes far from price. NepseAlpha's chart shows the same; it
 settles once volatility returns, and such stocks lack the 201 sessions needed to be scored.
 
+### 6.2b Setups & breakouts (`screener/setups.py`, `docs/data/setups.json`)
+
+Minervini's entry layer on top of the Trend Template, for stocks scoring ≥ 7
+(`SETUP_MIN_SCORE`):
+
+- **Base:** the highest high of the last 130 sessions starts the base (≥ 15 sessions old).
+- **Contractions:** zig-zag swings from the base peak; a reversal must exceed 2.5× the
+  stock's median daily move (clamped 4–10%) so daily noise isn't counted. The pattern is
+  judged from the deepest pullback (T1) on.
+- **VCP:** 2–6 contractions, each no deeper than the previous (+1pt tolerance), T1 ≤ 40%,
+  last ≤ 15%. **Pivot** = high of the last contraction.
+- **Status:** `breakout` (close crosses the pre-today pivot, or a new 52-week high whose
+  previous high is ≥ 10 sessions old, on ≥ 1.5× 50-day volume), `breakout_low_volume`,
+  `ready` (VCP within 5% below pivot), `forming`.
+- **Stop:** last contraction low, capped at 8% below the pivot.
+
+All thresholds are module constants. They're rules of thumb, not backtested parameters.
+
 ### 6.3 Equity Classification
 
 `EXCLUDED_SECTORS = {Corporate Debentures, Government Bonds, Mutual Fund, Preference Share,
@@ -256,8 +274,9 @@ Currently 276 of 338 total scraped symbols are equities.
 
 ### 6.4 NEPSE-specific adaptations
 
-- Windows are **trading-session counts**, not calendar days — handles the Sun–Thu week
-  without special-casing.
+- Windows are **trading-session counts**, not calendar days — so NEPSE's switch from a
+  Sun–Thu to a Mon–Fri trading week (July 2026) needed no recalibration, and history
+  spanning both weeks mixes cleanly.
 - "52 weeks" = trailing 235 sessions (not 252) to approximate a NEPSE year.
 - `possible_corporate_action_gap`: flags (doesn't correct) a single-session move >18%,
   the practical fingerprint of an unadjusted bonus/rights ex-date gap.

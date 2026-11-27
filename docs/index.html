@@ -17,6 +17,7 @@
 
     <div class="tabs" role="tablist">
       <button class="tab-btn active" data-tab="screener" role="tab" aria-selected="true">Stage 2 Screener</button>
+      <button class="tab-btn" data-tab="setups" role="tab" aria-selected="false">Setups &amp; Breakouts</button>
       <button class="tab-btn" data-tab="activity" role="tab" aria-selected="false">Market Activity</button>
     </div>
 
@@ -45,6 +46,42 @@
             </tr>
           </thead>
           <tbody id="stocksBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="tab-setups" role="tabpanel" hidden>
+      <p class="status">
+        Minervini's entry setups among stocks scoring 7+ on the Trend Template.
+        <strong>VCP</strong> (Volatility Contraction Pattern): a base where each pullback is
+        shallower than the last and volume dries up. <strong>Pivot</strong> = high of the last
+        contraction, the buy point. <strong>Breakout</strong> = closed above the pivot (or a
+        new 52-week high after a consolidation) today on &ge;1.5&times; 50-day average volume;
+        <em>low volume</em> breakouts are weaker. <strong>Ready</strong> = valid VCP within 5%
+        below the pivot. Stop is under the last contraction low, never more than 8% below the
+        pivot. Not investment advice.
+      </p>
+      <div class="meta-bar" id="setupsMeta"></div>
+      <div class="table-wrap">
+        <table id="setupsTable">
+          <thead>
+            <tr>
+              <th data-key="order">#</th>
+              <th data-key="symbol">Symbol</th>
+              <th data-key="status_order">Status</th>
+              <th data-key="close">Close</th>
+              <th data-key="pivot">Pivot</th>
+              <th data-key="dist_to_pivot_pct" title="Close vs pivot: negative = below the pivot">vs Pivot</th>
+              <th data-key="t_count">Contractions</th>
+              <th data-key="base_length">Base</th>
+              <th data-key="tightness_pct" title="High-low range of the last 10 sessions">10d range</th>
+              <th data-key="volume_dry_up_ratio" title="10-day average volume / 50-day average">Vol 10/50</th>
+              <th data-key="breakout_volume_ratio" title="Today's volume / 50-day average">Vol today</th>
+              <th data-key="stop">Stop (risk)</th>
+              <th data-key="screener_rank">Stage 2</th>
+            </tr>
+          </thead>
+          <tbody id="setupsBody"></tbody>
         </table>
       </div>
     </section>

@@ -1,6 +1,27 @@
 (function () {
   // Columns that read naturally ascending on first click; everything else starts descending.
-  const ASCENDING_FIRST = new Set(["rank", "order", "symbol", "sector", "pct_from_52w_high", "screener_rank"]);
+  const ASCENDING_FIRST = new Set([
+    "rank", "order", "symbol", "sector", "pct_from_52w_high", "screener_rank",
+    "status_order", "dist_to_pivot_pct", "tightness_pct", "volume_dry_up_ratio", "stop",
+  ]);
+
+  const SETUP_STATUS = {
+    breakout: { label: "Breakout", cls: "pass", title: "Closed above the pivot on strong volume" },
+    breakout_low_volume: { label: "Breakout · low vol", cls: "warn", title: "Closed above the pivot, but volume < 1.5x average" },
+    ready: { label: "Ready", cls: "ready", title: "Valid VCP within 5% below the pivot" },
+    forming: { label: "Forming", cls: "neutral", title: "Valid VCP, more than 5% below the pivot" },
+  };
+  const SETUP_STATUS_ORDER = ["breakout", "breakout_low_volume", "ready", "forming"];
+  const CRITERIA_SHORT = {
+    price_above_150_200: "price > AMA 150/200",
+    price_above_ma20: "price > AMA 20",
+    ma200_trending_up: "AMA 200 rising",
+    price_above_all_ma: "price > all AMAs",
+    price_above_ma50: "price > AMA 50",
+    above_52w_low_25pct: "25% above 52w low",
+    within_25pct_52w_high: "within 25% of 52w high",
+    rs_top_30pct: "RS top 30%",
+  };
 
   const CATEGORY_LABELS = { volume: "Vol", transactions: "Txn", turnover: "T/O" };
   const CATEGORY_TITLES = { volume: "Top 10 by volume", transactions: "Top 10 by transactions", turnover: "Top 10 by turnover" };
@@ -91,6 +112,59 @@
     linkRowsToStockPage(body);
   };
 
+  // ---- Setups & breakouts tab -------------------------------------------------------
+
+  const setups = { data: null, rows: [], sortKey: "order", sortDir: 1 };
+
+  setups.render = function () {
+    const data = setups.data;
+    const meta = document.getElementById("setupsMeta");
+    if (!data) {
+      meta.textContent = "No setup data published yet.";
+      return;
+    }
+    const c = data.counts;
+    meta.innerHTML = `
+      <span>Session: <strong>${data.as_of_trading_date || "n/a"}</strong></span>
+      <span>Breakouts: <strong>${c.breakout}</strong>${c.breakout_low_volume ? ` (+${c.breakout_low_volume} low volume)` : ""}</span>
+      <span>Ready: <strong>${c.ready}</strong></span>
+      <span>Forming: <strong>${c.forming}</strong></span>
+    `;
+    const body = document.getElementById("setupsBody");
+    if (!setups.rows.length) {
+      body.innerHTML = `<tr class="empty"><td colspan="13">No VCP setups or breakouts among Trend Template stocks this session.</td></tr>`;
+      return;
+    }
+    body.innerHTML = sortRows(setups.rows, setups.sortKey, setups.sortDir).map((s) => {
+      const st = SETUP_STATUS[s.status];
+      const footprint = s.contractions_pct && s.contractions_pct.length
+        ? `${s.t_count}T · ${s.contractions_pct.map((d) => fmt(d, 1)).join(" → ")}%`
+        : (s.breakout_type === "52w_high" ? "new 52w high" : "—");
+      const missing = (s.missing_criteria || []).map((k) => CRITERIA_SHORT[k] || k).join(", ");
+      const stage2 = `<span class="${s.is_candidate ? "candidate" : ""}" title="${missing ? "Fails: " + missing : "Passes all 8"}">#${s.screener_rank} · ${s.score}/8</span>`;
+      const volToday = s.breakout_volume_ratio === null ? "—" : `${fmt(s.breakout_volume_ratio)}×`;
+      const dry = s.volume_dry_up_ratio === null || s.volume_dry_up_ratio === undefined ? "—"
+        : `<span class="${s.volume_dry_up_ratio <= 0.8 ? "good" : ""}">${fmt(s.volume_dry_up_ratio)}×</span>`;
+      return `
+        <tr data-symbol="${s.symbol}">
+          <td class="rank">${s.order}</td>
+          <td>${s.symbol}</td>
+          <td><span class="badge ${st.cls}" title="${st.title}">${st.label}</span></td>
+          <td>${fmt(s.close)}</td>
+          <td><strong>${fmt(s.pivot)}</strong></td>
+          <td class="${s.dist_to_pivot_pct <= 0 ? "up" : ""}">${s.dist_to_pivot_pct > 0 ? "−" : "+"}${fmt(Math.abs(s.dist_to_pivot_pct))}%</td>
+          <td class="footprint">${footprint}</td>
+          <td>${s.base_length ? `${s.base_length}d` : "—"}</td>
+          <td>${s.tightness_pct === null || s.tightness_pct === undefined ? "—" : fmt(s.tightness_pct, 1) + "%"}</td>
+          <td>${dry}</td>
+          <td>${volToday}</td>
+          <td>${fmt(s.stop)} <span class="muted">(${fmt(s.risk_pct, 1)}%)</span></td>
+          <td>${stage2}</td>
+        </tr>`;
+    }).join("");
+    linkRowsToStockPage(body);
+  };
+
   // ---- Market activity tab --------------------------------------------------------
 
   const activity = { data: null, rows: [], sortKey: "order", sortDir: 1 };
@@ -141,20 +215,21 @@
 
   // ---- Tabs (hash-based, so links and the browser Back button keep the tab) -----
 
+  const TABS = ["screener", "setups", "activity"];
+
   function showTab(name) {
-    const tab = name === "activity" ? "activity" : "screener";
+    const tab = TABS.includes(name) ? name : "screener";
     document.querySelectorAll(".tab-btn").forEach((btn) => {
       const active = btn.dataset.tab === tab;
       btn.classList.toggle("active", active);
       btn.setAttribute("aria-selected", active ? "true" : "false");
     });
-    document.getElementById("tab-screener").hidden = tab !== "screener";
-    document.getElementById("tab-activity").hidden = tab !== "activity";
+    TABS.forEach((t) => { document.getElementById(`tab-${t}`).hidden = t !== tab; });
   }
 
   document.querySelectorAll(".tab-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
-      history.replaceState(null, "", btn.dataset.tab === "activity" ? "#activity" : "#");
+      history.replaceState(null, "", btn.dataset.tab === "screener" ? "#" : `#${btn.dataset.tab}`);
       showTab(btn.dataset.tab);
     });
   });
@@ -163,6 +238,21 @@
 
   makeSortable("stocksTable", screener);
   makeSortable("activityTable", activity);
+  makeSortable("setupsTable", setups);
+
+  fetch("data/setups.json")
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => {
+      setups.data = data;
+      setups.rows = data
+        ? data.stocks.map((s, i) => ({ ...s, order: i + 1, status_order: SETUP_STATUS_ORDER.indexOf(s.status) }))
+        : [];
+      setups.render();
+    })
+    .catch((err) => {
+      setups.render();
+      console.error(err);
+    });
 
   fetch("data/candidates.json")
     .then((r) => r.json())

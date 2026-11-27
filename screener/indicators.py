@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 
-# NEPSE trades ~4-5 days/week (Sun-Thu) rather than the 5-day week Minervini's original
-# 50/150/200 *day* windows assume. We treat these as trading-session counts, which
-# naturally handles the shorter week without recalibration. "52 weeks" similarly becomes
-# a trading-session approximation rather than 252 (the standard 5-day-week figure).
+# NEPSE trades Monday-Friday (Sunday-Thursday before July 2026), with frequent public
+# holidays. Every window here is a count of trading sessions, not calendar days, so the
+# change of trading week needs no recalibration. "52 weeks" is a trading-session
+# approximation (235) rather than 252, since holidays cut NEPSE's sessions per year.
 WEEK52_SESSIONS = 235
 TREND_LOOKBACK_SESSIONS = 20
 
