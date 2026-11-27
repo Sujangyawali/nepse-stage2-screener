@@ -26,21 +26,19 @@ correction** — moving averages, 52-week highs/lows, and relative strength for 
 may be distorted around the gap date. Always check a flagged stock's actual news/corporate
 action history before trusting its scorecard.
 
-## SMA vs. AMA tabs are scored independently
+## Moving averages match NepseAlpha's "Moving Average Adaptive"
 
-The dashboard has two tabs running the same 8-criterion Trend Template, but against
-different moving averages:
+The AMA 20/50/150/200 values are computed exactly like the "Moving Average Adaptive"
+indicator on NepseAlpha's **daily (1D)** chart. Compare against the 1D chart — the 1h or
+other timeframes use different bars and will show different values.
 
-- **SMA** — the classic Minervini Trend Template, using fixed 50/150/200-day simple
-  moving averages.
-- **AMA** — the same 8 criteria, but using Kaufman's Adaptive Moving Average (KAMA) in
-  place of each SMA. AMA speeds up (tracks price closely) during efficient, one-directional
-  moves and slows down during choppy/sideways stretches, so it can flag a genuine trend
-  change faster than a backward-looking SMA — at the cost of being noisier in genuinely
-  indecisive markets.
+Small differences can still appear for stocks that had a bonus or rights issue in the past
+year or so: NepseAlpha adjusts old prices for these, and our price history isn't adjusted
+(see above), which mostly affects AMA 150 and AMA 200.
 
-A stock's SMA and AMA candidacy are computed independently — it can pass one and fail the
-other. Neither is "more correct"; they're different lenses on the same price data.
+With this indicator a longer period reacts *faster* than a shorter one, so in a strong
+uptrend AMA 200 sits closest to price. Because of that, the Trend Template here checks that
+price is above the AMAs rather than Minervini's original "50 above 150 above 200" ordering.
 
 ## Relative Strength is universe-relative, not index-relative
 

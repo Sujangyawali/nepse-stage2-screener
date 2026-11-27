@@ -1,21 +1,12 @@
 import numpy as np
 import pandas as pd
 
-from screener.indicators import is_trending_up, kama, moving_average, sma, week52_high_low
+import math
+from pathlib import Path
 
+import pytest
 
-def test_sma_basic_window():
-    series = pd.Series([1, 2, 3, 4, 5])
-    result = sma(series, 3)
-    assert result.isna().sum() == 2
-    assert result.iloc[2] == 2  # mean(1,2,3)
-    assert result.iloc[-1] == 4  # mean(3,4,5)
-
-
-def test_sma_insufficient_data_is_all_nan():
-    series = pd.Series([1, 2, 3])
-    result = sma(series, 5)
-    assert result.isna().all()
+from screener.indicators import adaptive_ma, is_trending_up, week52_high_low
 
 
 def test_is_trending_up_true_when_rising():
@@ -41,50 +32,52 @@ def test_week52_high_low_uses_trailing_window():
     assert low == 50
 
 
-def test_kama_nan_before_er_period():
-    series = pd.Series(range(1, 6), dtype=float)  # shorter than default er_period=10
-    result = kama(series)
-    assert result.isna().all()
+def test_adaptive_ma_nan_until_period_bars_of_history():
+    series = pd.Series([100.0, 110.0, 99.0, 108.9, 104.0])
+    result = adaptive_ma(series, 2)
+    assert result.iloc[:2].isna().all()
+    assert result.iloc[2:].notna().all()
 
 
-def test_kama_seeds_at_er_period_with_raw_price():
-    series = pd.Series(range(1, 21), dtype=float)
-    result = kama(series, er_period=10)
-    assert result.iloc[10] == series.iloc[10]
-    assert result.iloc[:10].isna().all()
+def test_adaptive_ma_matches_hand_computed_formula():
+    # NepseAlpha / TradingView "Moving Average Adaptive", period 2, worked by hand:
+    # the running value is seeded with the previous close (110), then
+    #   alpha = 0.1 * |ln(c / c[2])| / (popstdev(last 2 log returns) * sqrt(2))
+    series = pd.Series([100.0, 110.0, 99.0])
+    r1, r2 = math.log(110 / 100), math.log(99 / 110)
+    sigma = abs(r1 - r2) / 2  # population stdev of two values
+    alpha = 0.1 * abs(math.log(99 / 100)) / (sigma * math.sqrt(2))
+    expected = 110 + alpha * (99 - 110)
+    assert adaptive_ma(series, 2).iloc[2] == pytest.approx(expected, rel=1e-12)
 
 
-def test_kama_tracks_closely_in_a_strong_consistent_trend():
-    # Perfectly efficient trend (constant step size) -> efficiency ratio ~1 -> KAMA should
-    # sit very close to price, unlike a slow-reacting SMA.
-    series = pd.Series(np.arange(1, 101, dtype=float))
-    result = kama(series, er_period=10, fast_period=2, slow_period=200)
-    # A same-window SMA200 would sit ~50 away (the midpoint of a 1..100 ramp); KAMA in a
-    # perfectly efficient trend should hug price far more closely than that.
-    assert abs(result.iloc[-1] - series.iloc[-1]) < 5.0
+def test_adaptive_ma_flat_window_resets_to_close():
+    # A perfectly flat window has zero volatility -> undefined (0/0) -> NaN, and the
+    # running value resets to that bar's close, same as the charting library.
+    series = pd.Series([100.0] * 5 + [120.0, 130.0])
+    result = adaptive_ma(series, 3)
+    assert result.iloc[3:5].isna().all()
+    assert result.iloc[5:].notna().all()
 
 
-def test_kama_lags_more_in_a_choppy_series():
-    rng = np.random.default_rng(0)
-    # Oscillate around a fixed level with no net direction -> efficiency ratio ~0 -> KAMA
-    # should behave like the heavily-smoothed slow_period tier, far from the last price spike.
-    series = pd.Series(100 + rng.normal(0, 5, 150))
-    series.iloc[-1] = 200  # one big spike at the very end
-    result = kama(series, er_period=10, fast_period=2, slow_period=200)
-    assert abs(result.iloc[-1] - series.iloc[-1]) > 50
+def test_adaptive_ma_short_series_all_nan():
+    assert adaptive_ma(pd.Series([1.0, 2.0, 3.0]), 5).isna().all()
 
 
-def test_moving_average_dispatches_sma():
-    series = pd.Series(range(1, 60), dtype=float)
-    assert moving_average(series, 10, "sma").equals(sma(series, 10))
+def test_adaptive_ma_matches_nepsealpha_chart_for_hdl():
+    """Golden values read off NepseAlpha's 1D HDL chart for the 2026-11-26 candle.
 
+    20 and 50 match to the paisa. 150 and 200 drift slightly because NepseAlpha
+    back-adjusts prices for HDL's 20% bonus (pre-2025-11-06 closes / 1.2) while our
+    sharesansar history is unadjusted; on NepseAlpha's own adjusted closes, all four
+    periods match exactly.
+    """
+    csv_path = Path(__file__).resolve().parents[1] / "data" / "history" / "HDL.csv"
+    df = pd.read_csv(csv_path)
+    close = df.loc[df["date"] <= "2026-11-26", "close"].reset_index(drop=True)
+    assert len(close) == 394  # guards against the fixture history being rewritten
 
-def test_moving_average_dispatches_ama():
-    series = pd.Series(range(1, 60), dtype=float)
-    assert moving_average(series, 30, "ama").equals(kama(series, slow_period=30))
-
-
-def test_moving_average_rejects_unknown_method():
-    import pytest
-    with pytest.raises(ValueError):
-        moving_average(pd.Series([1.0, 2.0]), 10, "wma")
+    assert adaptive_ma(close, 20).iloc[-1] == pytest.approx(1319.78, abs=0.02)
+    assert adaptive_ma(close, 50).iloc[-1] == pytest.approx(1328.98, abs=0.02)
+    assert adaptive_ma(close, 150).iloc[-1] == pytest.approx(1320.02, rel=0.005)
+    assert adaptive_ma(close, 200).iloc[-1] == pytest.approx(1314.20, rel=0.005)

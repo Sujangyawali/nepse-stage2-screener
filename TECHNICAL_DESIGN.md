@@ -10,9 +10,9 @@
 
 A stock screener for the Nepal Stock Exchange (NEPSE) that flags equities entering
 **Stage 2** of Stan Weinstein's market-cycle model, using Mark Minervini's 8-point Trend
-Template from *Trade Like a Stock Market Wizard*, evaluated two ways: against classic
-50/150/200-day **SMA**s, and independently against **Kaufman's Adaptive Moving Average
-(AMA)**.
+Template from *Trade Like a Stock Market Wizard*, evaluated against **adaptive moving
+averages (AMA 20/50/150/200)** computed identically to NepseAlpha's "Moving Average
+Adaptive" indicator (see [§6.2](#62-the-adaptive-moving-average-nepsealpha-compatible)).
 
 **Non-goals:**
 - Not a broker, not a trade execution system, not investment advice (see [§8](#8-known-limitations)).
@@ -94,13 +94,13 @@ Everything is free at this scale and requires no credentials to operate.
 | `scraper/sector_filter.py` | Per-symbol GET of `/company/<symbol>`, extracts `#sector`, classifies equity vs. excluded, persists `data/meta/symbols.json` |
 | `scraper/storage.py` | Idempotent per-symbol CSV upsert (same-day reruns replace, not duplicate); `InvalidSymbolError` guard |
 | `scraper/fetch_backfill.py` | Calls the TradingView UDF chart endpoint to seed ~320 sessions of history per symbol |
-| `screener/indicators.py` | `sma()`, `kama()`, `moving_average()` dispatcher, `is_trending_up()`, `week52_high_low()` |
-| `screener/trend_template.py` | `evaluate(df, method="sma"\|"ama")` — the 8-criterion scorecard, generic over which MA function computes ma50/150/200 |
-| `screener/universe.py` | Cross-sectional Relative Strength percentile ranking (method-agnostic — price-return based) |
-| `screener/build_output.py` | Orchestrates a full run: loads history, evaluates both methods independently, writes `docs/data/*.json` |
+| `screener/indicators.py` | `adaptive_ma()` (NepseAlpha-compatible AMA), `is_trending_up()`, `week52_high_low()` |
+| `screener/trend_template.py` | `evaluate(df)` — the 8-criterion scorecard over AMA 20/50/150/200 |
+| `screener/universe.py` | Cross-sectional Relative Strength percentile ranking (price-return based) |
+| `screener/build_output.py` | Orchestrates a full run: loads history, evaluates every symbol, writes `docs/data/*.json`, prunes stale history files |
 | `scripts/run_daily.py` | Single entrypoint for CI and local dev: scrape → filter to equities → store → screen → publish. Distinguishes "no new session" (clean no-op) from real failure (non-zero exit) |
-| `docs/index.html` + `assets/js/app.js` | Candidate list dashboard, SMA/AMA tabs, client-side sortable table |
-| `docs/stock.html` + `assets/js/stock.js` | Per-stock detail: Chart.js price+MA chart, 8-criterion scorecard, tab-switchable |
+| `docs/index.html` + `assets/js/app.js` | Candidate list dashboard, client-side sortable table |
+| `docs/stock.html` + `assets/js/stock.js` | Per-stock detail: Chart.js price + AMA 20/50/150/200 chart, 8-criterion scorecard |
 | `.github/workflows/daily_scrape.yml` | Scheduled automation — the only thing that runs unattended |
 | `.github/workflows/backfill.yml` | Manual-only: re-run historical backfill and/or refresh sector classification |
 
@@ -129,7 +129,7 @@ sequenceDiagram
             Runner->>FS: upsert_rows(symbol) → data/history/SYMBOL.csv
         end
         Runner->>Runner: screener.build_output.run()
-        Note over Runner: evaluate() x 276 symbols x (sma, ama)<br/>+ RS ranking (shared) -> candidates.json, meta.json,<br/>history/SYMBOL.json (candidates only)
+        Note over Runner: evaluate() x 276 symbols<br/>+ RS ranking -> candidates.json, meta.json,<br/>history/SYMBOL.json (candidates only)
         Runner->>FS: write data/meta/last_run.json
         Runner-->>Cron: exit 0
         Cron->>Git: git add + commit + push (github-actions[bot])
@@ -175,48 +175,67 @@ page. The daily pipeline only *reads* this — it never reclassifies on its own.
 {
   "generated_at": "2026-07-24T17:16:28+05:45",
   "as_of_trading_date": "2026-07-23",
-  "sma": { "universe_size": 276, "candidates_count": 10, "stocks": [ /* full 276, sorted */ ] },
-  "ama": { "universe_size": 276, "candidates_count": 6,  "stocks": [ /* independent scoring */ ] }
+  "universe_size": 276,
+  "candidates_count": 14,
+  "stocks": [ /* full 276, sorted by score then RS */ ]
 }
 ```
-Each stock entry: `symbol, name, sector, close, ma50, ma150, ma200, week52_high/low,
+Each stock entry: `symbol, name, sector, close, ma20, ma50, ma150, ma200, week52_high/low,
 pct_above_52w_low, pct_from_52w_high, rs_percentile, criteria{8 booleans}, score, is_candidate,
 history_days_available, data_quality{sufficient_history, possible_corporate_action_gap}`.
 
 ### 5.4 `docs/data/history/<SYMBOL>.json` (candidates only, ~300 sessions)
 
-One combined series per date with **both** `sma50/150/200` and `ama50/150/200` fields, so
-the frontend tab toggle never needs a second fetch.
+One entry per date: `date, close, ama20, ama50, ama150, ama200`. AMAs are computed on the
+full history before trimming to the display window (the AMA is recursive). Files for symbols
+that are no longer candidates are deleted on each run.
 
 ---
 
 ## 6. Screening Logic
 
-### 6.1 The 8 Trend Template criteria (identical set, two lenses)
+### 6.1 The 8 Trend Template criteria
 
-1. Price above both the 150- and 200-window MA
-2. 150-window MA above 200-window MA
-3. 200-window MA trending up (vs. ~20 sessions ago)
-4. 50-window MA above both 150- and 200-window MA
-5. Price above the 50-window MA
+1. Price above both AMA 150 and AMA 200 (`price_above_150_200`)
+2. Price above AMA 20 (`price_above_ma20`) — *replaces Minervini's "150 above 200"*
+3. AMA 200 trending up vs. ~20 sessions ago (`ma200_trending_up`)
+4. Price above all four AMAs (`price_above_all_ma`) — *replaces "50 above 150 & 200"*
+5. Price above AMA 50 (`price_above_ma50`)
 6. Price ≥ 25% above the 52-week low
 7. Price within 25% of the 52-week high
 8. Relative Strength in the top 30% of the scraped universe
 
 `is_candidate` requires **all 8** (`CANDIDATE_SCORE_THRESHOLD = 8`) and
-`sufficient_history` (≥ `MIN_HISTORY_SESSIONS = 200` real rows).
+`sufficient_history` (≥ `MIN_HISTORY_SESSIONS = 201` real rows — AMA 200 needs 201 closes).
 
-### 6.2 SMA vs. AMA — why both exist
+Why criteria 2 and 4 differ from Minervini: with this AMA a **longer period reacts faster**
+(see 6.2), so in a clean uptrend the lines stack price > AMA200 > AMA150 > AMA50 — the
+reverse of SMAs. The original MA-ordering rules would reject exactly the strongest trends,
+so they are replaced with price-vs-AMA rules.
 
-| | SMA | AMA (Kaufman's) |
-|---|---|---|
-| Formula | Fixed-window arithmetic mean | Recursive, adapts smoothing constant to an efficiency ratio (`ER = net change / sum of abs changes` over `er_period=10`) |
-| Behavior | Same lag regardless of market character | Fast in efficient trends, slow in chop |
-| Parameters used here | window ∈ {50,150,200} | `er_period=10, fast_period=2`, and `slow_period` reused as {50,150,200} so "AMA50/150/200" stay conceptually comparable to their SMA namesakes |
-| Independence | `sma` and `ama` blocks in `candidates.json` are scored **completely independently** — a stock can pass one and fail the other (RS ranking is the only shared input, since it's price-return-based, not MA-based) |
+### 6.2 The adaptive moving average (NepseAlpha-compatible)
 
-Real example on 2026-07-23: **SHIVM** scored 8/8 on AMA (reversal already caught) but 7/8
-on SMA (`sma200_trending_up` still false — the slow SMA hadn't caught up yet).
+`screener.indicators.adaptive_ma(close, period)` is a port of TradingView Charting Library's
+built-in `Moving Average Adaptive@tv-basicstudies-1` — the indicator nepsealpha.com's chart
+shows as "Moving Average Adaptive" (one input, "Period"). It is **not** Kaufman's KAMA:
+
+```
+r      = ln(close / close[1])
+sigma  = stdev(r, period)                               # population stdev (ddof=0)
+signal = ln(close / close[period]) / (sigma * sqrt(period))
+alpha  = 0.1 * |signal|                                 # not clamped — can exceed 1
+ama    = ama[1] + alpha * (close - ama[1])              # NaN result -> reset to close
+```
+
+Verified 2026-11-27 against NepseAlpha's 1D HDL chart (2026-11-26 candle): on NepseAlpha's
+own price series all four periods match to 0.01; on our (unadjusted) sharesansar history
+20/50 match to 0.01 and 150/200 are within 0.2% — the residual is HDL's 20% bonus, which
+NepseAlpha back-adjusts and we don't (see §8). Locked in by
+`tests/test_indicators.py::test_adaptive_ma_matches_nepsealpha_chart_for_hdl`.
+
+Quirk worth knowing: during an IPO-style run of identical daily circuit moves, sigma → 0,
+alpha explodes and the line spikes far from price. NepseAlpha's chart shows the same; it
+settles once volatility returns, and such stocks lack the 201 sessions needed to be scored.
 
 ### 6.3 Equity Classification
 
@@ -262,9 +281,9 @@ add auth, or rate-limit at any time with zero notice.
    `data/meta/symbols.json` until `backfill.yml` is manually re-run with
    `refresh_sectors=true` — until then they're silently excluded from screening (a safe
    default, but silent).
-5. **AMA parameters (`er_period=10, fast=2`) are a design choice, not a canonical
-   standard.** Different parameter choices would produce a different (still defensible)
-   candidate list.
+5. **AMA matches NepseAlpha only as well as the underlying prices match.** NepseAlpha
+   back-adjusts history for bonus/rights issues; we don't (limitation 2), so for stocks with
+   a corporate action inside the lookback, AMA 150/200 can differ slightly from the chart.
 6. **Not investment advice.** Mechanical screener over incomplete, scraped, unaudited data.
 
 ---
@@ -412,10 +431,10 @@ python -m scraper.sector_filter
 
 ## 11. Extension Points
 
-- **New criterion or MA method:** add a case to `screener.indicators.moving_average()` and
-  extend `screener.trend_template.METHODS`; `build_output.py` already loops over
-  `METHODS` generically, so a third tab (e.g. EMA) requires no changes there beyond the
-  frontend tab button.
+- **New criterion:** add the key to `CRITERIA_KEYS` and its rule in
+  `screener.trend_template.evaluate()`, plus a label in `docs/assets/js/stock.js`
+  (`CRITERIA_LABELS`). A new AMA period only needs adding to `MA_PERIODS`; the chart
+  and history JSON pick it up automatically (add a color in `stock.js`'s `MA_COLORS`).
 - **Index-relative RS:** would require a fourth scraped data source (NEPSE index
   history) — flagged as an open problem, not attempted, in `screener/universe.py`.
 - **Alerting on failure:** GitHub Actions supports a failure-notification step (Slack

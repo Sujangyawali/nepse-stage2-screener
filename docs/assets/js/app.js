@@ -1,12 +1,5 @@
 (function () {
-  const METHOD_BLURBS = {
-    sma: "Classic Minervini Trend Template: 50/150/200-day simple moving averages.",
-    ama: "Same 8 criteria, but using Kaufman's Adaptive Moving Average (AMA) instead of a " +
-      "fixed-window SMA — reacts faster to genuinely efficient trends and slower to choppy " +
-      "ones. Scored independently of the SMA tab; a stock can pass one and not the other.",
-  };
-
-  const state = { candidates: null, method: "sma", sortKey: "score", sortDir: -1 };
+  const state = { candidates: null, sortKey: "score", sortDir: -1 };
 
   function fmt(value, digits) {
     if (value === null || value === undefined || Number.isNaN(value)) return "—";
@@ -19,25 +12,20 @@
     return `<span class="badge ${cls}">${label}</span>`;
   }
 
-  function currentBlock() {
-    return state.candidates[state.method];
-  }
-
   function renderMeta() {
-    const block = currentBlock();
+    const block = state.candidates;
     const bar = document.getElementById("metaBar");
     bar.innerHTML = `
       <span>As of: <strong>${state.candidates.as_of_trading_date || "n/a"}</strong></span>
       <span>Universe: <strong>${block.universe_size}</strong> equities</span>
-      <span>Stage 2 candidates (${state.method.toUpperCase()}): <strong>${block.candidates_count}</strong></span>
+      <span>Stage 2 candidates: <strong>${block.candidates_count}</strong></span>
       <span>Generated: ${new Date(state.candidates.generated_at).toLocaleString()}</span>
     `;
-    document.getElementById("methodBlurb").textContent = METHOD_BLURBS[state.method];
   }
 
   function sortedStocks() {
     const { sortKey, sortDir } = state;
-    const stocks = currentBlock().stocks.slice();
+    const stocks = state.candidates.stocks.slice();
     stocks.sort((a, b) => {
       const av = a[sortKey];
       const bv = b[sortKey];
@@ -68,7 +56,7 @@
     body.querySelectorAll("tr").forEach((row) => {
       row.addEventListener("click", () => {
         window.location.href =
-          `stock.html?symbol=${encodeURIComponent(row.dataset.symbol)}&method=${state.method}`;
+          `stock.html?symbol=${encodeURIComponent(row.dataset.symbol)}`;
       });
     });
   }
@@ -84,18 +72,6 @@
       state.sortDir = state.sortKey === key ? -state.sortDir : -1;
       state.sortKey = key;
       renderTable();
-    });
-  });
-
-  document.querySelectorAll("#methodTabs .tab-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (btn.dataset.method === state.method) return;
-      state.method = btn.dataset.method;
-      document.querySelectorAll("#methodTabs .tab-btn").forEach((b) => {
-        b.classList.toggle("active", b === btn);
-        b.setAttribute("aria-selected", b === btn ? "true" : "false");
-      });
-      renderAll();
     });
   });
 

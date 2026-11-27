@@ -74,9 +74,8 @@ def main(write_history_for_all: bool = False) -> int:
 
     result = run_screener(write_history_for_all=write_history_for_all)
     print(
-        f"screener: universe_size={result['sma']['universe_size']} "
-        f"sma_candidates={result['sma']['candidates_count']} "
-        f"ama_candidates={result['ama']['candidates_count']}"
+        f"screener: universe_size={result['universe_size']} "
+        f"candidates={result['candidates_count']}"
     )
 
     _write_last_run(as_of_date)

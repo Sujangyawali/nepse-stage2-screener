@@ -8,62 +8,57 @@ import pandas as pd
 WEEK52_SESSIONS = 235
 TREND_LOOKBACK_SESSIONS = 20
 
-KAMA_ER_PERIOD = 10
-KAMA_FAST_PERIOD = 2
+AMA_ALPHA_SCALE = 0.1
 
 
-def sma(series: pd.Series, window: int) -> pd.Series:
-    return series.rolling(window=window, min_periods=window).mean()
+def adaptive_ma(close: pd.Series, period: int) -> pd.Series:
+    """"Moving Average Adaptive", exactly as NepseAlpha's chart computes it.
 
+    This is a port of TradingView Charting Library's built-in study
+    `Moving Average Adaptive@tv-basicstudies-1` (single input: "Period"), which is what
+    nepsealpha.com's chart runs. It is NOT Kaufman's AMA (KAMA): the speed comes from
+    trend strength measured against volatility, not from an efficiency ratio.
 
-def kama(series: pd.Series, er_period: int = KAMA_ER_PERIOD, fast_period: int = KAMA_FAST_PERIOD,
-         slow_period: int = 30) -> pd.Series:
-    """Kaufman's Adaptive Moving Average.
+        r      = ln(close / close[1])                       per-bar log return
+        sigma  = stdev(r, period)                           population stdev (ddof=0)
+        signal = ln(close / close[period]) / (sigma * sqrt(period))
+        alpha  = 0.1 * |signal|
+        ama    = ama[1] + alpha * (close - ama[1])
 
-    Unlike a fixed-window SMA, KAMA speeds up (tracks price closely) when the market is
-    moving efficiently in one direction and slows down (behaves like a heavily-smoothed
-    average) when it's choppy/sideways — measured by the efficiency ratio (net change over
-    `er_period` bars, divided by the sum of bar-to-bar moves over the same window).
-    `slow_period` plays the same role an SMA window plays during low-efficiency stretches,
-    which is why callers reuse 50/150/200 as `slow_period` to build an AMA50/150/200 trio
-    comparable to the SMA-based Trend Template.
+    Bars where any of that is undefined (the first `period` bars, or a flat window where
+    sigma == 0) output NaN, and the running value is reset to that bar's close, the same
+    as the library's `isNaN(c) ? close : c`. Verified against NepseAlpha's 1D chart for
+    HDL on 2026-11-26 (periods 20/50/150/200 match to 0.01).
     """
-    values = series.to_numpy(dtype=float)
-    n = len(values)
-    result = np.full(n, np.nan)
-    if n <= er_period:
-        return pd.Series(result, index=series.index)
+    c = close.to_numpy(dtype=float)
+    n = len(c)
+    out = np.full(n, np.nan)
+    if n <= period:
+        return pd.Series(out, index=close.index)
 
-    change = np.abs(values[er_period:] - values[:-er_period])
-    abs_diffs = pd.Series(values).diff().abs()
-    volatility = abs_diffs.rolling(er_period).sum().to_numpy()[er_period:]
+    log_ret = np.full(n, np.nan)
     with np.errstate(divide="ignore", invalid="ignore"):
-        efficiency_ratio = np.where(volatility == 0, 0.0, change / volatility)
+        log_ret[1:] = np.log(c[1:] / c[:-1])
+        sigma = pd.Series(log_ret).rolling(period, min_periods=period).std(ddof=0).to_numpy()
+        momentum = np.full(n, np.nan)
+        momentum[period:] = np.log(c[period:] / c[:-period])
+        alpha = AMA_ALPHA_SCALE * np.abs(momentum / (sigma * np.sqrt(period)))
 
-    fast_sc = 2 / (fast_period + 1)
-    slow_sc = 2 / (slow_period + 1)
-    smoothing_constant = (efficiency_ratio * (fast_sc - slow_sc) + slow_sc) ** 2
+    prev = np.nan
+    for i in range(n):
+        value = prev + alpha[i] * (c[i] - prev)
+        if np.isfinite(value):
+            out[i] = value
+            prev = value
+        else:
+            prev = c[i]
 
-    result[er_period] = values[er_period]
-    for i in range(er_period + 1, n):
-        sc = smoothing_constant[i - er_period]
-        result[i] = result[i - 1] + sc * (values[i] - result[i - 1])
-
-    return pd.Series(result, index=series.index)
-
-
-def moving_average(close: pd.Series, window: int, method: str = "sma") -> pd.Series:
-    """Dispatch to the right moving-average implementation for a Trend Template variant."""
-    if method == "sma":
-        return sma(close, window)
-    if method == "ama":
-        return kama(close, slow_period=window)
-    raise ValueError(f"unknown moving-average method {method!r}")
+    return pd.Series(out, index=close.index)
 
 
-def is_trending_up(sma_series: pd.Series, lookback: int = TREND_LOOKBACK_SESSIONS):
+def is_trending_up(ma_series: pd.Series, lookback: int = TREND_LOOKBACK_SESSIONS):
     """True/False if there's enough history to compare, else None (unknown)."""
-    valid = sma_series.dropna()
+    valid = ma_series.dropna()
     if len(valid) < lookback + 1:
         return None
     latest = valid.iloc[-1]

@@ -9,8 +9,10 @@ NEPSE has no public official API, so this project scrapes public pages instead:
 - A daily GitHub Actions workflow scrapes [sharesansar.com](https://www.sharesansar.com/today-share-price)'s
   end-of-day price table and appends it to a per-symbol historical dataset committed in this repo.
 - A screener computes 52-week highs/lows and relative strength, and evaluates each stock
-  against the 8-point Trend Template two independent ways: classic 50/150/200-day **SMA**s,
-  and **Kaufman's Adaptive Moving Average (AMA)**.
+  against an 8-point Minervini-style Trend Template built on **adaptive moving averages
+  (AMA 20/50/150/200)** — the "Moving Average Adaptive" indicator exactly as NepseAlpha's daily chart computes it
+(TradingView Charting Library's built-in `Moving Average Adaptive@tv-basicstudies-1`), so the values on the
+  dashboard can be checked against NepseAlpha's 1D chart.
 - Results are published as JSON and rendered by a static dashboard on GitHub Pages — no backend server.
 
 See [TECHNICAL_DESIGN.md](TECHNICAL_DESIGN.md) for the full architecture, data model,
@@ -43,7 +45,7 @@ python -m http.server 8000 -d docs
 ## Repository layout
 
 - `scraper/` — fetching, parsing, normalizing, and storing NEPSE price data.
-- `screener/` — moving averages, Trend Template evaluation, relative strength ranking.
+- `screener/` — adaptive moving average, Trend Template evaluation, relative strength ranking.
 - `data/` — source-of-truth historical CSVs (one file per symbol) and symbol metadata.
 - `docs/` — GitHub Pages site (served from `main:/docs`) and the JSON data it reads.
 - `scripts/run_daily.py` — orchestrates scrape → screen → publish, used by CI and locally.
